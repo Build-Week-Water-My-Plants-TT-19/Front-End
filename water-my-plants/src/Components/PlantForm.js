@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 
 const initialPlantValues = {
@@ -19,17 +20,26 @@ const Plant = () =>{
         setPlantValues({...plantValues, [inputName]: inputValue})
     }
 
+    //helpers
+
+    const history = useHistory()
+
+    const routeToPlantCards = () =>{
+        history.push('/PlantCard')
+    }
+
    //event handlers
    const handlePlantInput = (event) => {
        const {name, value} = event.target
        updateForm(name, value)
    }
 
-   const plantAction = (event)=>{
+   const handlePlantAction = (event)=>{
        event.preventDefault()
        //axios code will go here
        axios.get('https://reqres.in/api/register')
        .then(response =>{
+           routeToPlantCards()
            console.log(response)
        })
        .catch(error =>{
@@ -37,7 +47,7 @@ const Plant = () =>{
        })
    }
     return(
-        <form onSubmit={plantAction} className ='plant-form'>
+        <form onSubmit={handlePlantAction} className ='plant-form'>
             <label>Plant Name {' '}</label>
             <input
             name='input'
@@ -73,6 +83,7 @@ const Plant = () =>{
             defaultValue={plantValues.schedule}
             onChange={handlePlantInput}
             />
+            <button onClick={handlePlantAction}>Add your favorite plants</button>
         </form>
     )
 }

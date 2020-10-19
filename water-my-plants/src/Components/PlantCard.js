@@ -17,7 +17,11 @@ const PlantCard = () =>{
             <h1> Your Plants </h1>
             {plants.map(plant=>{
                 return(
-                    <h1 key={plant.id}>{plant.name}</h1>
+                    <div key={plant.id}>
+                    <h1>Name: {plant.name}</h1>
+                    <p>Year: {plant.year}</p>
+                    <p>Pantone Value: {plant.pantone_value}</p>
+                    </div>
                 )
             })}
         </div>

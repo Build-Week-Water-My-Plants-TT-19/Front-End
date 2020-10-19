@@ -35,7 +35,7 @@ const [disabled, setDisabled] = useState(initialDiabled)
     const history = useHistory()
 
     const routeToSignIn = () =>{
-        history.pushState('/SignIn')
+        history.push('/SignIn')
     }
 
 //event handlers
@@ -56,7 +56,7 @@ const handleInput = (event) => {
 const onSignUp = (event) =>{
     event.preventDefault()
 
-    axios.get(/*'https://reqres.in/api/register' actual URL for log in goes here*/)
+    axios.get(/*'https://reqres.in/api/register'*/)
     .then(response =>{
         alert('You have successfully regesterd')
         routeToSignIn()
