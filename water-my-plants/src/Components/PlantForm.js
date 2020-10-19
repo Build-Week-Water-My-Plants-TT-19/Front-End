@@ -37,7 +37,8 @@ const Plant = () =>{
    const handlePlantAction = (event)=>{
        event.preventDefault()
        //axios code will go here
-       axios.post('https://reqres.in/api/register')
+       axios
+       .post('https://reqres.in/api/register')
        .then(response =>{
            routeToPlantCards()
            console.log(response)
@@ -48,6 +49,7 @@ const Plant = () =>{
    }
     return(
         <form onSubmit={handlePlantAction} className ='plant-form'>
+            <h2>Add your favorite plant</h2>
             <label>Plant Name {' '}</label>
             <input
             name='input'
