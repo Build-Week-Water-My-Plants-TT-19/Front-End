@@ -3,6 +3,7 @@ import SignUp from './Components/SignUp'
 import Plant from './Components/PlantForm'
 import './App.css';
 import PlantCard from './Components/PlantCard'
+import PlantForm from './Components/PlantForm'
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <Plant/>
       <br></br>
       <PlantCard/>
+      <br></br>
+      <PlantForm/>
     </div>
   );
 }

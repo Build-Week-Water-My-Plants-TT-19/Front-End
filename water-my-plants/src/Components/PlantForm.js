@@ -37,7 +37,7 @@ const Plant = () =>{
    const handlePlantAction = (event)=>{
        event.preventDefault()
        //axios code will go here
-       axios.get('https://reqres.in/api/register')
+       axios.post('https://reqres.in/api/register')
        .then(response =>{
            routeToPlantCards()
            console.log(response)

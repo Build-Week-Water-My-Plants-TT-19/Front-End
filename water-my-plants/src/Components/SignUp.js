@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import * as yup from 'yup'
@@ -71,9 +71,14 @@ const onSignUp = (event) =>{
     console.log(signUpValues)
 }
 
-const disableButton = () =>{
-    setDisabled(initialDiabled)
-}
+
+
+useEffect(()=>{
+    schema.isValid(signUpValues)
+    .then((valid)=>{
+        setDisabled(!valid)
+    })
+}, [signUpValues])
 
 
 
@@ -115,7 +120,7 @@ return(
             <div>{signUpErrors.email}</div>
         </div>
         <br></br>
-        <button onClick={onSignUp}
+        <button disabled={disabled}
         type='submit'
         name='submit'
         defaultValue='register'
