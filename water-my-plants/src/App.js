@@ -1,4 +1,5 @@
 import React from 'react';
+import SignUp from './Components/SignUp'
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -14,6 +15,7 @@ function App() {
           <Route exact path='/' render={() => <Home />} />
         </Switch>
       </Router>
+      <SignUp/>
     </div>
   );
 }
