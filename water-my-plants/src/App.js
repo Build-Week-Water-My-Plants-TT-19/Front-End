@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
+
 //imported components
 import SignIn from './Components/SignIn';
 import ContactUs from './Components/ContactUs'
@@ -15,9 +16,13 @@ import ProfileDashboard from './Components/ProfileDashboard'
 import PlantForm from './Components/PlantForm'
 import ContactUsEmailSent from './Components/ContactUsEmailSent';
 
+//App Styles
+
+
 
 function App() {
   return (
+
     <div className="App">
 
       <Navbar />
@@ -32,7 +37,7 @@ function App() {
           <Route path='/contact-confirmation' render={() => <ContactUsEmailSent/>}/>
         </Switch>
       </Router>
-      
+     
     </div>
   );
 }
