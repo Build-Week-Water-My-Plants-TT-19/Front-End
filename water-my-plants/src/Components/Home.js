@@ -1,19 +1,27 @@
 import React from 'react';
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import PlantPic from '../PictureFolder/plantpic.png'
+import Plant from './PlantForm';
+
+//Styling for Home Page
+
+document.body.style.backgroundImage = `url(${PlantPic})`
 
 const StyledHome = styled.div`
+    
     h1{
         font-size:3rem;
-        margin-left:40%;
+        margin-left:42%;
         color:green;
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
 
     p{
-        margin-left:20%;
+        margin-left:37%;
         font-size:1.5rem;
         outline-style: dotted blue; 
+        width:30%;
     }
 
     button{
@@ -22,8 +30,12 @@ const StyledHome = styled.div`
         background-color: whitesmoke;
         font-weight:bold;
         border-radius:10px;
-        width:6%;
+        width:10%;
         transition: all 1.5s ease-in-out;
+        font-size:1.2rem;
+        color:orange;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
         &:hover{
             cursor:pointer;
             background-color:green;
