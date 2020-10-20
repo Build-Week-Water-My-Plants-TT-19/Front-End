@@ -75,7 +75,7 @@ const onSignUp = (event) =>{
 
 useEffect(()=>{
     schema.isValid(signUpValues)
-    .then((valid)=>{
+    .then(valid=>{
         setDisabled(!valid)
     })
 }, [signUpValues])

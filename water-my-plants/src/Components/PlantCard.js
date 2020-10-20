@@ -1,17 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 const PlantCard = (props) =>{
     //setting card state
     const[plants, setPlants] = useState([]);
     const { plant } = props
+    //wrap axios in useEffect
 
-    axios.get('https://reqres.in/api/register')
-    .then(response=>{
-        setPlants(response.data.data)
-    })
-    .catch(error=>{
-        console.log('THIS IS YOUR ERROR------>', error)
-    })
+    useEffect(()=>{
+        axios.get('https://reqres.in/api/register')
+        .then(response=>{
+            setPlants(response.data.data)
+        })
+        .catch(error=>{
+            console.log('THIS IS YOUR ERROR------>', error)
+        })
+    },[])
+
 
     return(
         <div>
