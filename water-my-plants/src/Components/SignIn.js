@@ -18,6 +18,11 @@ const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
     background-color:#ECF1EB;
+
+    .forgotPswCards {
+        align-self:center;
+        margin-right: 18%;
+    }
 `
 const QuoteSection = styled.div`
     background-color: #E1E6F4;
@@ -161,8 +166,10 @@ const SignIn = () =>{
                     onChange = {onChange}
                 />
                 <div> {signInErrors.password}</div> 
-
-                {visible ? <ForgotPassword/> : null}
+                
+                <div className='forgotPswCards'>
+                    {visible ? <ForgotPassword/> : null}
+                </div>
                 
                 <button onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
                     <p>Forgot password</p>

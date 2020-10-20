@@ -8,9 +8,13 @@ import ContactUs from './Components/ContactUs'
 import SignUp from './Components/SignUp'
 
 
+
 import Home from './Components/Home'
 import Navbar from './Components/Navbar'
 import ProfileDashboard from './Components/ProfileDashboard'
+import PlantForm from './Components/PlantForm'
+import ContactUsEmailSent from './Components/ContactUsEmailSent';
+
 
 function App() {
   return (
@@ -23,7 +27,9 @@ function App() {
           <Route path='/sign-up' render={() => <SignUp />} />
           <Route path='/login' render={() => <SignIn />} />
           <Route path='/profile' render={() => <ProfileDashboard />} />
-          <Route path='/contact' render={() => <ContactUs/>}/>
+          <Route path='/new-plant' render={() => <PlantForm />} />
+          <Route path='/contact-us' render={() => <ContactUs />} />
+          <Route path='/contact-confirmation' render={() => <ContactUsEmailSent/>}/>
         </Switch>
       </Router>
       
