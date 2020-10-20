@@ -6,7 +6,6 @@ import {Route, Link} from 'react-router-dom'
 import SignIn from './Components/SignIn';
 import ContactUs from './Components/ContactUs'
 import SignUp from './Components/SignUp'
-import Plant from './Components/PlantForm'
 import './App.css';
 import PlantCard from './Components/PlantCard'
 import PlantForm from './Components/PlantForm'
@@ -19,7 +18,7 @@ function App() {
       {/* <ContactUs/> */}
       <SignUp/>
       <br></br>
-      <Plant/>
+      <PlantForm/>
       <br></br>
       <PlantCard/>
       <br></br>
