@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import schema from '../SignUpValidation/Validation'
 
 //initial values
-const initialDiabled  = true;
+const initialDisabled  = true;
 
 const initialSignUpValues = {
 username:'',
@@ -25,13 +25,9 @@ const SignUp = () =>{
 //initializing state
 const [signUpValues, setSignUpValues] = useState(initialSignUpValues)
 const [signUpErrors, setSignUpErrors] = useState(initalSignUpErrors)
-const [disabled, setDisabled] = useState(initialDiabled)
+const [disabled, setDisabled] = useState(initialDisabled)
 
 //helpers
-    const updateForm = (inputName, inputValue) =>{
-        setSignUpValues({...signUpValues, [inputName]: inputValue})
-    }
-
     const history = useHistory()
 
     const routeToSignIn = () =>{
@@ -40,6 +36,7 @@ const [disabled, setDisabled] = useState(initialDiabled)
 
 //event handlers
 const handleInput = (event) => {
+    // debugger
     const {name, value} = event.target
     yup
     .reach(schema, name)
@@ -50,7 +47,8 @@ const handleInput = (event) => {
     .catch(error=>{
         setSignUpErrors({...signUpErrors, [name]: error.errors[0]})
     })
-    updateForm({...signUpValues, [name]: value})
+    setSignUpValues({...signUpValues, [name]: value})
+    // debugger
 }
 
 const onSignUp = (event) =>{
@@ -75,7 +73,8 @@ const onSignUp = (event) =>{
 
 useEffect(()=>{
     schema.isValid(signUpValues)
-    .then((valid)=>{
+    .then(valid=>{
+        // debugger
         setDisabled(!valid)
     })
 }, [signUpValues])
@@ -120,12 +119,7 @@ return(
             <div>{signUpErrors.email}</div>
         </div>
         <br></br>
-        <button disabled={disabled}
-        type='submit'
-        name='submit'
-        defaultValue='register'
-        >Sign Up</button>
-        {/* add an onClick to the button to take the user to the log in page once signed up*/}
+        <button disabled={disabled}> Sign Up</button>
     </form>
 )
 }
