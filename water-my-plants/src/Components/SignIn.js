@@ -5,6 +5,9 @@ import axios from 'axios'
 
 import * as yup from 'yup'
 
+//import components
+import ForgotPassword from '../Components/ForgotPassword'
+
 // -------------------- basic styles -------------------
 const SignInPage = styled.div`
     display: flex;
@@ -56,6 +59,8 @@ const SignIn = () =>{
     const [signInForm, setSignInForm] = useState(inititialSignInForm)
     const [signInErrors, setSignInErrors] = useState(initialSignInErrors)
     const [disabled, setDisabled] = useState(initialDisabled)  
+
+    const [visible, setVisible ] = useState(false)
 
     // -------------- helper functions ----------------------
     
@@ -157,12 +162,16 @@ const SignIn = () =>{
                 />
                 <div> {signInErrors.password}</div> 
 
-                <Link>
+                {visible ? <ForgotPassword/> : null}
+                
+                <button onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
                     <p>Forgot password</p>
-                </Link>
+                </button>
+
+
                        
               
-                    <button disabled = {disabled}> Sign In </button>
+                <button disabled = {disabled}> Sign In </button>
                 
 
             </FormWrapper>

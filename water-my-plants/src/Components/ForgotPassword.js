@@ -6,9 +6,12 @@ import axios from 'axios'
 import * as yup from 'yup'
 
 
+
+
+
+
+
 const ForgotPassword = () => {
-    
-    
     
     return (
         <div>
@@ -18,7 +21,7 @@ const ForgotPassword = () => {
                  name = 'forgotPswEmail'
                  type = 'email'
                  value = ''
-                 onChange = {onChange}
+                 
                 />
 
             </div>        
