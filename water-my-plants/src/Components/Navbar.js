@@ -10,7 +10,7 @@ function Navbar() {
       </div>
 
       <div className='nav-links'>
-        <a href='/' >My Plants</a>
+        <a href='/profile' >My Plants</a>
         <a href='/login' >Login</a>
         <a href='/sign-up' >Sign Up</a>
         <a href='/new-plant' >Create Plant</a>

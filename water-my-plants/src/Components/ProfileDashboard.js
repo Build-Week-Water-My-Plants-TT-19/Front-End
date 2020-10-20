@@ -1,5 +1,5 @@
 import React from 'react'
-import Plant from './Plant'
+import PlantCard from './PlantCard'
 
 const plants = [
     {
@@ -57,12 +57,10 @@ const ProfileDashboard = () =>{
     return(
         <div className='profile'>
             <h1>My PLANTS</h1>
-            <p>yeet</p>
-
             {
-                plants.map(plant => (
-                    <Plant key={plant.id} plant={plant} />
-                ))
+              plants.map(plant => (
+                  <PlantCard key={plant.id} plant={plant} />
+              ))
             }
         </div>
     )
