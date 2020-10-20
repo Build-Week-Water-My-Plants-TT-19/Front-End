@@ -24,21 +24,7 @@ a{
     transition: all 1.5s ease-in-out;
   }
 }
-
-
 `
-
-
-
-
-
-
-
-
-
-
-
-
 
 function Navbar() {
   return (
@@ -54,6 +40,7 @@ function Navbar() {
         <a href='/login' >Login</a>
         <a href='/sign-up' >Sign Up</a>
         <a href='/new-plant' >Create Plant</a>
+        <a href='/contact-us'>Contact Us</a>
       </div>
       
     </div>
