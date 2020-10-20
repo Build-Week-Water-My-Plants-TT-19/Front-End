@@ -5,6 +5,9 @@ import axios from 'axios'
 
 import * as yup from 'yup'
 
+//import components
+import ForgotPassword from '../Components/ForgotPassword'
+
 // -------------------- basic styles -------------------
 const SignInPage = styled.div`
     display: flex;
@@ -15,6 +18,11 @@ const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
     background-color:#ECF1EB;
+
+    .forgotPswCards {
+        align-self:center;
+        margin-right: 18%;
+    }
 `
 const QuoteSection = styled.div`
     background-color: #E1E6F4;
@@ -56,6 +64,8 @@ const SignIn = () =>{
     const [signInForm, setSignInForm] = useState(inititialSignInForm)
     const [signInErrors, setSignInErrors] = useState(initialSignInErrors)
     const [disabled, setDisabled] = useState(initialDisabled)  
+
+    const [visible, setVisible ] = useState(false)
 
     // -------------- helper functions ----------------------
     
@@ -156,13 +166,19 @@ const SignIn = () =>{
                     onChange = {onChange}
                 />
                 <div> {signInErrors.password}</div> 
-
-                <Link>
+                
+                <div className='forgotPswCards'>
+                    {visible ? <ForgotPassword/> : null}
+                </div>
+                
+                <button onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
                     <p>Forgot password</p>
-                </Link>
+                </button>
+
+
                        
               
-                    <button disabled = {disabled}> Sign In </button>
+                <button disabled = {disabled}> Sign In </button>
                 
 
             </FormWrapper>

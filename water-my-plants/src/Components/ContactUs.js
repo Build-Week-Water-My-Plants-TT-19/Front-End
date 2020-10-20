@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import * as yup from 'yup'
 import axios from 'axios'
+import {useHistory} from 'react-router-dom'
+
+//---------------------- Components Import ---------------------------
+
 
 // --------------------- Basic Styling --------------------------------
 const ContactUsPage=styled.div`
@@ -60,22 +64,18 @@ const ContactUs = () =>{
     const [disabled, setDisabled] = useState(initialDisabled)
 
     // ---------------- Helper Functions ---------------------------
-    
+    const history = useHistory()
 
     // ---------------- Event Handlers -----------------------------
     const onChange = evt => {
         const {name, value} = evt.target
-        console.log(name)
-        console.log(value)
-        debugger
         inputChange(name, value)
     }
 
     const onSubmit = evt => {
-        console.log('Test')
         evt.preventDefault()
 
-        debugger
+        
         contactFormSubmit()
     }
     
@@ -96,17 +96,17 @@ const ContactUs = () =>{
             setcontactUsForm({
                 ...contactUsForm, [name]: value
             })
-            console.log(contactUsForm)
+           
     }
 
     const contactFormSubmit = () => {
-        debugger
+        
         const newContactForm = {
             name: contactUsForm.name.trim(),
             email: contactUsForm.email.trim(),
             message: contactUsForm.message.trim(),
         }
-        debugger
+        
         postNewContactForm(newContactForm)
     }
     
@@ -167,7 +167,7 @@ const ContactUs = () =>{
                 />
                 <div>{contactUsErrors.message}</div>
 
-                <button disabled={disabled}> Sign Up </button>
+                <button disabled={disabled} onClick={() => history.push('/contact-confirmation')}> Send </button>
 
             </ContactUsForm>
         </ContactUsPage>
