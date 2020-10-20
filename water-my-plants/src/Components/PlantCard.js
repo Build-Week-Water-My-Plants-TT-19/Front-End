@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-const PlantCard = () =>{
+const PlantCard = (props) =>{
     //setting card state
     const[plants, setPlants] = useState([]);
+    const { plant } = props
 
     axios.get('https://reqres.in/api/register')
     .then(response=>{
@@ -14,16 +15,9 @@ const PlantCard = () =>{
 
     return(
         <div>
-            <h1> Your Plants </h1>
-            {plants.map(plant=>{
-                return(
-                    <div key={plant.id}>
-                    <h1>Name: {plant.name}</h1>
-                    <p>Year: {plant.year}</p>
-                    <p>Pantone Value: {plant.pantone_value}</p>
-                    </div>
-                )
-            })}
+            <h1>Name: {plant.nickname}</h1>
+            <p>Species: {plant.species}</p>
+            <p>H2O Frequency: {plant.h2oFrequency}</p>
         </div>
     )
 
