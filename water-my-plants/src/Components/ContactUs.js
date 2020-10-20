@@ -11,12 +11,33 @@ import {useHistory} from 'react-router-dom'
 const ContactUsPage=styled.div`
     display:flex;
     justify-content: center;
+    height: 50vh;
 `
 const ContactUsForm = styled.form`
     display:flex;
+    align-self:center;
     flex-direction:column;
     background-color: #ECF1EB;
-    width: 45%;
+    width: 50%;
+    box-shadow: 5px 5px 5px 5px darkgray;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+
+    h1{
+        text-align: center;
+    }
+
+    input{
+        margin-bottom: 1%;
+        margin-top: 1%;
+    }
+    .sendButton{
+        width: 25%;
+        align-self: center;
+        margin-top: 4%;
+    }
+
 `
 // --------------------- initial state values --------------------------
 
@@ -167,7 +188,7 @@ const ContactUs = () =>{
                 />
                 <div>{contactUsErrors.message}</div>
 
-                <button disabled={disabled} onClick={() => history.push('/contact-confirmation')}> Send </button>
+                <button className='sendButton' disabled={disabled} onClick={() => history.push('/contact-confirmation')}> Send </button>
 
             </ContactUsForm>
         </ContactUsPage>
