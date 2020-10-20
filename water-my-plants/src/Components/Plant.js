@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Plant = () =>{
+const Plant = (props) =>{
+    const { plant } = props
+
     return(
         <div className='plant'>
-            <h1>Plants!</h1>
+            <p>{plant.nickname}</p>
         </div>
     )
 }
