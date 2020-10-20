@@ -16,8 +16,9 @@ const ForgotPswCard = styled.div`
     border: 2px solid black;
     z-index: 10;
     padding: 1%;
-    width: 30%;
+    width: 22%;
     position: absolute;
+    box-shadow: 5px 5px 5px 5px darkgray;
     
     input{
         background: transparent;
