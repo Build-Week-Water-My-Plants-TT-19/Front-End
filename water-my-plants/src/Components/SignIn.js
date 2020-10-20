@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled  from 'styled-components'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
@@ -39,20 +39,20 @@ const initialDisabled = true // use this to make sure submit button only becomes
 const signInSchema = yup.object().shape({
     username: yup  
         .string()
-        .required('Must include Username')
-        .min(5, 'Username needs 5 characters'),
+        .required('A username is required')
+        .min(5, 'Username must be at least 5 characters'),
     
     password: yup
         .string()
-        .required('Must include Password')
-        .min(5, 'Password must have min 5 characters'),
+        .required('Password field is required')
+        .min(3, 'Password must be at least 3 characters'),
 })
 
 
 const SignIn = () =>{
         
     // ------------- slices of state -----------------------
-    
+    const [listOfSignIns, setListOfSignIns] = useState([]) //
     const [signInForm, setSignInForm] = useState(inititialSignInForm)
     const [signInErrors, setSignInErrors] = useState(initialSignInErrors)
     const [disabled, setDisabled] = useState(initialDisabled)  
@@ -64,9 +64,12 @@ const SignIn = () =>{
     // -------------- Event Handler -------------------------
     const onChange = evt => {
         const {name, value} = evt.target
-        evt.preventDefault()
-
         inputChange(name, value)
+    }
+
+    const onSubmit = (evt) => {
+        evt.preventDefault()
+        signInFormSubmit()
     }
     
     const inputChange = (name, value) => {
@@ -88,10 +91,42 @@ const SignIn = () =>{
                 ...signInForm,
                 [name]: value,
         })
-        
     }
     
+    const signInFormSubmit = () => {
+        
+        const newSignInForm = {
+            username: signInForm.username.trim(),
+            password: signInForm.password.trim(),  
+        }
+        console.log(newSignInForm)
+        postNewSignInForm(newSignInForm)
+    }
     
+    const postNewSignInForm = newSignInForm => {
+        debugger
+        axios.post('https://reqres.in/api/login', newSignInForm) // need to add an api endpoint
+            .then(result => {
+                console.log(result)
+                debugger
+                console.log(result.data)
+                debugger
+                setListOfSignIns(listOfSignIns.concat(result.data))
+            })
+            .catch(err => {
+                console.log('Please look up error', err)
+            })
+            . finally(() => {
+                setSignInForm(inititialSignInForm)
+            })
+    }
+
+    useEffect(() => {
+        signInSchema.isValid(signInForm)
+        .then(valid => {
+            setDisabled(!valid);
+        })
+    }, [signInForm])
     
     
     
@@ -100,7 +135,7 @@ const SignIn = () =>{
     return(
         <SignInPage>
             
-            <FormWrapper>
+            <FormWrapper onSubmit={onSubmit}>
                 <h1>Welcome Back</h1>
 
                 
@@ -108,25 +143,27 @@ const SignIn = () =>{
                 <input
                     name = 'username'
                     type = 'text'
-                    value = ''
+                    value = {signInForm.username}
                     onChange = {onChange}
                 />
-            
+                <div>{signInErrors.username}</div>
+
                 <label>Password</label>
                 <input
-                    name = 'username'
-                    type = 'text'
-                    value = ''
+                    name = 'password'
+                    type = 'password'
+                    value = {signInForm.password}
                     onChange = {onChange}
                 />
+                <div> {signInErrors.password}</div> 
 
                 <Link>
                     <p>Forgot password</p>
                 </Link>
-                        
-                <Link>
+                       
+              
                     <button disabled = {disabled}> Sign In </button>
-                </Link>
+                
 
             </FormWrapper>
 

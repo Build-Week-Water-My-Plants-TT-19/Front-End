@@ -65,8 +65,18 @@ const ContactUs = () =>{
     // ---------------- Event Handlers -----------------------------
     const onChange = evt => {
         const {name, value} = evt.target
-        evt.preventDefault()
+        console.log(name)
+        console.log(value)
+        debugger
         inputChange(name, value)
+    }
+
+    const onSubmit = evt => {
+        console.log('Test')
+        evt.preventDefault()
+
+        debugger
+        contactFormSubmit()
     }
     
     const inputChange = (name, value) => {
@@ -86,31 +96,38 @@ const ContactUs = () =>{
             setcontactUsForm({
                 ...contactUsForm, [name]: value
             })
+            console.log(contactUsForm)
     }
 
     const contactFormSubmit = () => {
-        
+        debugger
         const newContactForm = {
             name: contactUsForm.name.trim(),
             email: contactUsForm.email.trim(),
             message: contactUsForm.message.trim(),
         }
+        debugger
         postNewContactForm(newContactForm)
     }
     
     const postNewContactForm = newContactForm => {
-        axios.post('', newContactForm) // need to add an api endpoint
+        console.log(listOfContactForms)
+        axios.post('https://reqres.in/api/ContactUs', newContactForm) // need to add an api endpoint
             .then(result => {
                 setListOfContactForms(listOfContactForms.concat(result.data))
+                console.log(listOfContactForms)
             })
             .catch(err => {
-                console.log(err)
+                console.log('Please Look up', err)
+                console.log(listOfContactForms)
             })
             . finally(() => {
                 setcontactUsForm(initialContactUsForm)
+                console.log(listOfContactForms)
             })
+            
     }
-
+    
     useEffect(() => {
         contactUsSchema.isValid(contactUsForm)
         .then(valid => {
@@ -121,7 +138,7 @@ const ContactUs = () =>{
     return(
         <ContactUsPage>
             
-            <ContactUsForm onsubmit={contactFormSubmit}>
+            <ContactUsForm onSubmit={onSubmit}>
                 <h1>Get in touch.</h1>
                 <label>Name:</label>
                 <input
@@ -130,20 +147,25 @@ const ContactUs = () =>{
                     value = {contactUsForm.name}
                     onChange= {onChange}
                 />
+                <div>{contactUsErrors.name}</div>
 
                 <label>Email</label>
                 <input
                     name = 'email'
                     type = 'email'
                     value = {contactUsForm.email} 
-                    onChange = {onChange}/>
+                    onChange = {onChange}
+                />
+                <div>{contactUsErrors.email}</div>
 
                 <label>Your message</label>
                 <input
                     name = 'message'
                     type = 'text'
                     value = {contactUsForm.message}
-                    onChange = {onChange}/>
+                    onChange = {onChange}
+                />
+                <div>{contactUsErrors.message}</div>
 
                 <button disabled={disabled}> Sign Up </button>
 
