@@ -21,11 +21,19 @@ const FormWrapper = styled.form`
 
     .forgotPswCards {
         align-self:center;
-        margin-right: 18%;
+        margin-right: 35%;
+    }
+
+    .forgotPswButton {
+        background: none;
+        border: none;
+        padding: 0;
+        outline: none;
     }
 `
 const QuoteSection = styled.div`
     background-color: #E1E6F4;
+    text-align: center;
 `
 
 // ----------------- initial state values --------------
@@ -171,8 +179,8 @@ const SignIn = () =>{
                     {visible ? <ForgotPassword/> : null}
                 </div>
                 
-                <button onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
-                    <p>Forgot password</p>
+                <button className="forgotPswButton" onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
+                    Forgot password
                 </button>
 
 
