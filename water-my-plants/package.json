@@ -11,7 +11,10 @@
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+<<<<<<< HEAD
     "styled-components": "^5.2.0",
+=======
+>>>>>>> d29322657fb1a52878a7bb26c2cd6f3e2963c1ce
     "yup": "^0.29.3"
   },
   "scripts": {
