@@ -46,6 +46,18 @@ const StyledHome = styled.div`
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     }
 
+    h3{
+    font-size:2rem;
+    color:Orange;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+
+    h2{
+    font-size:2rem;
+    color:Orange;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+
 
 
     button{
@@ -61,7 +73,7 @@ const StyledHome = styled.div`
         border:black;
         transform:scale(1.3);
         transition: all 1.1s ease-in-out;
-        color:magenta;
+        color:orange;
         text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
      }
     }
@@ -78,6 +90,7 @@ const Home = () => {
             
             <h1>Water My Plants</h1>
             <img src='https://images.unsplash.com/photo-1536069221282-d877868cad6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'/>
+            <h2>What we offer...</h2>
             <p>Create a plant and it will remind you when it's time to feed that foliage and quench your plants' thirst!</p>
                 <h4>Organize</h4>
                 <p>Keep track of all your plants in one place, access them right from the dashboard.</p>
@@ -86,6 +99,7 @@ const Home = () => {
                 <h4>Record</h4>
                 <p>Quickly record watering so you can get back to your other tasks.</p>        
 
+                <h3>Create Plants and Manage Them!</h3>
             <Link to='/new-plant'>
                 <button>Create a new Plant!</button>
             </Link>
