@@ -7,7 +7,7 @@ import * as yup from 'yup'
 
 
 
-
+// --------------- Basic Styling -------------------
 const ForgotPswCard = styled.div`
     background-color: mistyrose;
     display: flex;
@@ -16,8 +16,9 @@ const ForgotPswCard = styled.div`
     border: 2px solid black;
     z-index: 10;
     padding: 1%;
-    width: 20%;
+    width: 22%;
     position: absolute;
+    box-shadow: 5px 5px 5px 5px darkgray;
     
     input{
         background: transparent;
@@ -28,7 +29,7 @@ const ForgotPswCard = styled.div`
 
     button {
         margin-top: 3%;
-        width: 24%;
+        width: 35%;
         align-self: center;
     }
     .hide {
@@ -38,33 +39,55 @@ const ForgotPswCard = styled.div`
         display:flex;
     }
 `
+const ForgotPswInput = styled.div`
+    display:flex;
+    flex-direction: column;
+`
 
+const EmailSent = styled.div`
+    display:flex;
+    flex-direction: column;
+`
+//--------------- initial state values --------------
+const initialEmailFormvalue = {email: ''}
 
 const ForgotPassword = () => {
     
-    const [visible, setVisible] = useState('show')
+    // ---------- slices of state --------------------
+    const [visible, setVisible] = useState('show') 
     const [visible2, setVisible2] = useState('hide')
+
+    const[emailForm, setEmailForm] = useState(initialEmailFormvalue)
+
+    // ----------- Event Handlers -----------------
+
+    const onChange = (evt) => {
+        const {name, value} = evt.target
+
+        setEmailForm({...emailForm, [name]: value})
+    }
 
     return (
         <div>
             <ForgotPswCard>
-               <div className={visible}>
+               <ForgotPswInput className={visible} One>
                     <p> Enter email to retrieve account </p>
                     <input
-                        name = 'forgotPswEmail'
+                        name = 'email'
                         type = 'email'
-                        value = ''
+                        value = {emailForm.email}
+                        onChange = {onChange}
                     />
                     <button onClick={()=> {
                          setVisible('hide');
                          setVisible2('show');
                         }}>submit</button>
-                </div> 
+                </ForgotPswInput> 
 
-                <div className={visible2}>
+                <EmailSent className={visible2}>
                     <h4>Thank you! Please check your email.</h4>
                     <Link>resend email </Link>
-                 </div>
+                 </EmailSent>
                
             </ForgotPswCard>        
         </div>

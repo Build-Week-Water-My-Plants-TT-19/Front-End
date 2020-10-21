@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react'
 import styled  from 'styled-components'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-
+import { useHistory } from 'react-router-dom'
+import { saveUsername } from '../Store/Actions/saveUsernameAction'
+import { connect } from 'react-redux';
 import * as yup from 'yup'
 
 //import components
@@ -12,20 +14,54 @@ import ForgotPassword from '../Components/ForgotPassword'
 const SignInPage = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content:center;
+    height: 50vh;
 `
 
 const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-self: center;
     background-color:#ECF1EB;
+    width: 50%;
+    height: 27vh;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 5px 5px 5px 5px darkgray;
 
+    h1{
+        text-align:center;
+    }
+
+    input{
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    .signInButton {
+        width:25%;
+        align-self: center;
+        margin-top:1%;
+        margin-bottom: 1%;
+    }
     .forgotPswCards {
         align-self:center;
-        margin-right: 18%;
+        margin-right: 45%;
+        
+    }
+
+    .forgotPswButton {
+        background: none;
+        border: none;
+        outline: none;
+        margin-bottom: 1%;
     }
 `
 const QuoteSection = styled.div`
-    background-color: #E1E6F4;
+    
+    text-align: center;
+    margin-bottom: 2%;
+    
 `
 
 // ----------------- initial state values --------------
@@ -57,15 +93,16 @@ const signInSchema = yup.object().shape({
 })
 
 
-const SignIn = () =>{
+const SignIn = (props) =>{
         
     // ------------- slices of state -----------------------
     const [listOfSignIns, setListOfSignIns] = useState([]) //
     const [signInForm, setSignInForm] = useState(inititialSignInForm)
     const [signInErrors, setSignInErrors] = useState(initialSignInErrors)
     const [disabled, setDisabled] = useState(initialDisabled)  
-
+    const history = useHistory();
     const [visible, setVisible ] = useState(false)
+    const { saveUsername } = props
 
     // -------------- helper functions ----------------------
     
@@ -114,14 +151,20 @@ const SignIn = () =>{
     }
     
     const postNewSignInForm = newSignInForm => {
-        debugger
-        axios.post('https://reqres.in/api/login', newSignInForm) // need to add an api endpoint
+        axios.post('https://chrisjcorbin-watermyplants.herokuapp.com/login', `grant_type=password&username=${signInForm.username}&password=${signInForm.password}`, {
+            headers: {
+              // btoa is converting our client id/client secret into base64
+              Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          })
             .then(result => {
                 console.log(result)
-                debugger
                 console.log(result.data)
-                debugger
                 setListOfSignIns(listOfSignIns.concat(result.data))
+                window.localStorage.setItem('token', result.data.access_token)
+                saveUsername(signInForm.username)
+                history.push("/profile");
             })
             .catch(err => {
                 console.log('Please look up error', err)
@@ -171,26 +214,33 @@ const SignIn = () =>{
                     {visible ? <ForgotPassword/> : null}
                 </div>
                 
-                <button onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
-                    <p>Forgot password</p>
+                <button className="forgotPswButton" onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
+                    Forgot password
                 </button>
 
 
                        
               
-                <button disabled = {disabled}> Sign In </button>
+                <button className='signInButton' disabled = {disabled}> Sign In </button>
                 
 
+            
+            
+
+                <QuoteSection>
+                    <p>“You can get attached to plants when you lose faith in people.”</p>
+                    <h4>Manuele Fior</h4>
+                </QuoteSection>
+           
             </FormWrapper>
-
-            <QuoteSection>
-                <p>“You can get attached to plants when you lose faith in people.”</p>
-                <h4>Manuele Fior</h4>
-            </QuoteSection>
-
-
         </SignInPage>
     )
 }
 
-export default SignIn
+const mapStateToProps = state => {
+    return {
+      username: state.saveUsername.username
+    }
+  }
+  
+  export default connect(mapStateToProps, { saveUsername })(SignIn);
