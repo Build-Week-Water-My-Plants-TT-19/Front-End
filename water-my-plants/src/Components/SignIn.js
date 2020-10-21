@@ -101,7 +101,7 @@ const SignIn = (props) =>{
     const [signInErrors, setSignInErrors] = useState(initialSignInErrors)
     const [disabled, setDisabled] = useState(initialDisabled)  
     const history = useHistory();
-    const [visible, setVisible ] = useState(false)
+    const [visible, setVisible] = useState(false)
     const { saveUsername } = props
 
     // -------------- helper functions ----------------------
@@ -211,7 +211,7 @@ const SignIn = (props) =>{
                 <div> {signInErrors.password}</div> 
                 
                 <div className='forgotPswCards'>
-                    {visible ? <ForgotPassword/> : null}
+                    {visible ? <ForgotPassword hideForgotPsw={setVisible}/> : null} {/* This line opens the forgetpswcard */}
                 </div>
                 
                 <button className="forgotPswButton" onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
