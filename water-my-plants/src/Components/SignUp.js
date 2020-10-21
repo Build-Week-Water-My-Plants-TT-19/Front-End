@@ -3,20 +3,53 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import * as yup from 'yup'
 import schema from '../SignUpValidation/Validation'
+import styled from 'styled-components'
+
+//Sign Up Styles
+const SignUpPage = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    height: 50vh;
+`
+
+const FormWrapper = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color:#ECF1EB;
+    width: 50%;
+    height: 27vh;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 5px 5px 5px 5px darkgray;
+    margin-left:25%;
+    input{
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    button{
+        width:25%;
+        align-self: center;
+        margin-top:1%;
+        margin-bottom: 1%;
+    }
+`
 
 //initial values
 const initialDisabled  = true;
 
 const initialSignUpValues = {
 username:'',
-phonenumber: '',
+email: '',
 password: '',
 }
 
 //inital erros
 const initalSignUpErrors = {
 username:'',
-phonenumber: '',
+email: '',
 password: '',
 }
 
@@ -83,9 +116,11 @@ useEffect(()=>{
 
 
 return(
-    <form className ='form-container' onSubmit={onSignUp}>
+    <SignUpPage>
+        <FormWrapper onSubmit={onSignUp}>
+        
         <h2>Sign Up Today!</h2>
-        <label> Username{' '}
+        <label> Username </label>
         <input
         type='text'
         name='username'
@@ -93,19 +128,17 @@ return(
         onChange={handleInput}
         placeholder='Please enter your username'
         />
-        </label>
         <br></br>
-        <label> phonenumber{' '}
+        <label> email</label>
         <input
         type='text'
-        name='phonenumber'
-        defaultValue={signUpValues.phonenumber}
+        name='email'
+        defaultValue={signUpValues.email}
         onChange={handleInput}
-        placeholder='Please enter your phone number'
+        placeholder='Please enter your email'
         />
-        </label>
         <br></br>
-        <label> Password{' '}
+        <label> Password</label>
         <input
         type='password'
         name='password'
@@ -113,15 +146,15 @@ return(
         onChange={handleInput}
         placeholder='Please enter your password'
         />
-        </label>
         <div className='errors'>
             <div>{signUpErrors.name}</div>
             <div>{signUpErrors.password}</div>
-            <div>{signUpErrors.phonenumber}</div>
+            <div>{signUpErrors.email}</div>
         </div>
         <br></br>
         <button disabled={disabled}> Sign Up</button>
-    </form>
+        </FormWrapper>
+    </SignUpPage>
 )
 }
 

@@ -7,10 +7,10 @@ export default yup.object().shape({
     .required('A username is required')
     .min(5, 'Name must be at least 5 characters'),
 
-    phonenumber: yup
+    email: yup
     .string()
-    .required('An phonenumber is required')
-    .min(3, 'phonenumber must be at least 3 characters'),
+    .required('An email is required')
+    .min(3, 'email must be at least 3 characters'),
 
     password: yup
     .string()
