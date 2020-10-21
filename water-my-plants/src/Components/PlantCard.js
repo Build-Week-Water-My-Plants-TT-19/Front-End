@@ -8,7 +8,8 @@ const PlantCardWrapper = styled.div`
         flex-direction: column;
         align-items: center;
         border: 1px solid black;
-        width: 50%
+        width: 50%;
+        
     }
 `
 

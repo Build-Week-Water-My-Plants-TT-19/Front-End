@@ -8,6 +8,7 @@ import ContactUs from './Components/ContactUs'
 import SignUp from './Components/SignUp'
 import Home from './Components/Home'
 import Navbar from './Components/Navbar'
+import Footer from './Components/Footer'
 import ProfileDashboard from './Components/ProfileDashboard'
 import PlantForm from './Components/PlantForm'
 import ContactUsEmailSent from './Components/ContactUsEmailSent';
@@ -24,6 +25,7 @@ function App() {
     <div className="App">
 
       <Navbar />
+      
       <Router>
         <Switch>
           <Route exact path='/' render={() => <Home />} />
@@ -35,7 +37,9 @@ function App() {
           <Route path='/contact-confirmation' render={() => <ContactUsEmailSent />}/>
           <Route path='/plants/plant/:id' render={() => <Plant/>}/>
         </Switch>
+        {/* <Footer/> crashes when I try to load */} 
       </Router>
+     
      
     </div>
   );
