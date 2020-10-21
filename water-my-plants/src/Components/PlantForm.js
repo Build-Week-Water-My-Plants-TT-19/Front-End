@@ -21,7 +21,7 @@ const PlantForm = styled.form`
     flex-direction: column;
     justify-content: center;
     background-color: mistyrose;
-    height: 27vh;
+    height: 32vh;
     width: 35%;
     padding-left: 5%;
     padding-right: 5%;

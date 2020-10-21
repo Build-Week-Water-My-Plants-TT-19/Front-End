@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import PlantPic from '../PictureFolder/plantpic4.png'
- 
+
 //Styling for Home Page
 
 document.body.style.backgroundImage = `url(${PlantPic})`
@@ -15,6 +15,8 @@ const StyledHome = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
+    border: 2px solid orange;
+    
 
     p{
     font-size:1.5rem;
@@ -38,6 +40,7 @@ const StyledHome = styled.div`
     font-size:3rem;
     color:Orange;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    margin-top: 5%;
     }
 
     h4{

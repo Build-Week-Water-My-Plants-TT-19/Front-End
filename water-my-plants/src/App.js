@@ -37,8 +37,7 @@ function App() {
           <Route path='/contact-confirmation' render={() => <ContactUsEmailSent />}/>
           <Route path='/plants/plant/:id' render={() => <Plant/>}/>
         </Switch>
-        {/* <Footer/> */} 
-        <Footer/>
+        <Footer/> 
       </Router>
      
      
