@@ -24,7 +24,7 @@ function App() {
     <div className="App">
 
       <Navbar />
-      <Router>
+      {/* <Router> */}
         <Switch>
           <Route exact path='/' render={() => <Home />} />
           <Route path='/sign-up' render={() => <SignUp />} />
@@ -35,7 +35,7 @@ function App() {
           <Route path='/contact-confirmation' render={() => <ContactUsEmailSent />}/>
           <Route path='/plants/plant/:id' render={() => <Plant/>}/>
         </Switch>
-      </Router>
+      {/* </Router> */}
      
     </div>
   );

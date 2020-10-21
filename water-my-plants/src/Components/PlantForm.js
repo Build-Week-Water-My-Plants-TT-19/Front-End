@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 
 const initialPlantValues = {
-    id: `{Math.floor(Math.random() * 2000)}`,
+    id: `{Math.floor(Math.random() * 20000)}`,
     nickname: '',
     species:'',
     last_water: '',

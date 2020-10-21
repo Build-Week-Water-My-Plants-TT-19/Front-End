@@ -42,14 +42,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { saveUsername })(ProfileDashboard);
-
-
-// const mapStateToProps = state => {
-//   return {
-//     plantsIsLoading: state.fetchPlants.isLoading,
-//     plantsError: state.fetchPlants.error,
-//     plants: state.fetchPlants.plants
-//   }
-// }
-
-// export default connect(mapStateToProps, { fetchPlants })(ProfileDashboard);
