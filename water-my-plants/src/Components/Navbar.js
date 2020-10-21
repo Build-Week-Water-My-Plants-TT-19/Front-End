@@ -16,11 +16,14 @@ const NavBar = styled.div`
   a{
     text-decoration:none;
     font-weight:bold;
+    transition: all 1s ease-out;
+    
 
     &:hover{
     color:orange;
     transform:scale(1.3);
-    transition: all 1.5s ease-in-out;
+    transition: all 1s ease-in-out;
+    
     }
 
   }
