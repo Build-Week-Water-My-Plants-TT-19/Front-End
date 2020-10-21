@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import styled  from 'styled-components'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import CloseIcon from '@material-ui/icons/Close'
 
 import * as yup from 'yup'
 
@@ -38,6 +39,18 @@ const ForgotPswCard = styled.div`
     .show{
         display:flex;
     }
+
+    .closeButton{
+        align-self: flex-end;
+        color: black;
+        border-radius: 50%;
+        
+        background-color: white;
+        position: relative;
+        width:23px;
+        height: 23px;
+        border: 2px solid white;
+    }
 `
 const ForgotPswInput = styled.div`
     display:flex;
@@ -51,7 +64,9 @@ const EmailSent = styled.div`
 //--------------- initial state values --------------
 const initialEmailFormvalue = {email: ''}
 
-const ForgotPassword = () => {
+const ForgotPassword = (props) => {
+
+    const {hideForgotPsw} = props
     
     // ---------- slices of state --------------------
     const [visible, setVisible] = useState('show') 
@@ -70,7 +85,7 @@ const ForgotPassword = () => {
     return (
         <div>
             <ForgotPswCard>
-               <ForgotPswInput className={visible} One>
+               <ForgotPswInput className={visible}>
                     <p> Enter email to retrieve account </p>
                     <input
                         name = 'email'
@@ -85,7 +100,8 @@ const ForgotPassword = () => {
                 </ForgotPswInput> 
 
                 <EmailSent className={visible2}>
-                    <h4>Thank you! Please check your email.</h4>
+                    <CloseIcon onClick={()=> {hideForgotPsw(false)}}className='closeButton'/>
+                    <p>Thank you! Please check your email.</p>
                     <Link>resend email </Link>
                  </EmailSent>
                
