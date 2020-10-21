@@ -214,19 +214,12 @@ const SignIn = (props) =>{
                     {visible ? <ForgotPassword hideForgotPsw={setVisible}/> : null} {/* This line opens the forgetpswcard */}
                 </div>
                 
+                <button className='signInButton' disabled = {disabled}> Sign In </button>
+                
                 <button className="forgotPswButton" onClick={() => visible === true ? setVisible(false) : setVisible(true)}>
                     Forgot password
                 </button>
-
-
-                       
-              
-                <button className='signInButton' disabled = {disabled}> Sign In </button>
-                
-
             
-            
-
                 <QuoteSection>
                     <p>“You can get attached to plants when you lose faith in people.”</p>
                     <h4>Manuele Fior</h4>
