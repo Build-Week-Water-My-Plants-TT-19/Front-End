@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react'
 import styled  from 'styled-components'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-
+import { useHistory } from 'react-router-dom'
+import { saveUsername } from '../Store/Actions/saveUsernameAction'
+import { connect } from 'react-redux';
 import * as yup from 'yup'
 
 //import components
@@ -91,15 +93,16 @@ const signInSchema = yup.object().shape({
 })
 
 
-const SignIn = () =>{
+const SignIn = (props) =>{
         
     // ------------- slices of state -----------------------
     const [listOfSignIns, setListOfSignIns] = useState([]) //
     const [signInForm, setSignInForm] = useState(inititialSignInForm)
     const [signInErrors, setSignInErrors] = useState(initialSignInErrors)
     const [disabled, setDisabled] = useState(initialDisabled)  
-
+    const history = useHistory();
     const [visible, setVisible ] = useState(false)
+    const { saveUsername } = props
 
     // -------------- helper functions ----------------------
     
@@ -148,14 +151,20 @@ const SignIn = () =>{
     }
     
     const postNewSignInForm = newSignInForm => {
-        debugger
-        axios.post('https://reqres.in/api/login', newSignInForm) // need to add an api endpoint
+        axios.post('https://chrisjcorbin-watermyplants.herokuapp.com/login', `grant_type=password&username=${signInForm.username}&password=${signInForm.password}`, {
+            headers: {
+              // btoa is converting our client id/client secret into base64
+              Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          })
             .then(result => {
                 console.log(result)
-                debugger
                 console.log(result.data)
-                debugger
                 setListOfSignIns(listOfSignIns.concat(result.data))
+                window.localStorage.setItem('token', result.data.access_token)
+                saveUsername(signInForm.username)
+                history.push("/profile");
             })
             .catch(err => {
                 console.log('Please look up error', err)
@@ -228,4 +237,10 @@ const SignIn = () =>{
     )
 }
 
-export default SignIn
+const mapStateToProps = state => {
+    return {
+      username: state.saveUsername.username
+    }
+  }
+  
+  export default connect(mapStateToProps, { saveUsername })(SignIn);

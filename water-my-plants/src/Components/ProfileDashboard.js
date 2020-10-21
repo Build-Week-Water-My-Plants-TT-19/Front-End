@@ -1,58 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PlantCard from './PlantCard'
+import { useState } from 'react'
+import { fetchPlants } from '../Store/Actions'
+import {saveUsername} from '../Store/Actions'
+import { connect } from 'react-redux';
+import axios from 'axios';
 
-const plants = [
-    {
-      id: 1,
-      nickname: 'Bob',
-      species: 'Acacia myrtifolia',
-      h2oFrequency: 0,
-    },
-    {
-        id: 2,
-        nickname: 'Billy',
-        species: 'Acacia myrtifolia',
-        h2oFrequency: 0,
-      },
-      {
-        id: 3,
-        nickname: 'Bub',
-        species: 'Acacia myrtifolia',
-        h2oFrequency: 0,
-      },
-      {
-        id: 4,
-        nickname: 'Bobby',
-        species: 'Acacia myrtifolia',
-        h2oFrequency: 0,
-      },
-      {
-        id: 5,
-        nickname: 'Brian',
-        species: 'Acacia myrtifolia',
-        h2oFrequency: 0,
-      },
-      {
-        id: 6,
-        nickname: 'Brandon',
-        species: 'Acacia myrtifolia',
-        h2oFrequency: 0,
-      },
-      {
-        id: 7,
-        nickname: 'Bromin',
-        species: 'Acacia myrtifolia',
-        h2oFrequency: 0,
-      },
-      {
-        id: 8,
-        nickname: 'Bob Jr.',
-        species: 'Acacia myrtifolia',
-        h2oFrequency: 0,
-      },
-  ];
 
-const ProfileDashboard = () =>{
+const ProfileDashboard = (props) =>{
+  // const { fetchPlants, plants } = props
+  const [plants, setPlants] = useState([])
+  const { username } = props 
+
+  useEffect(() => {
+    // fetchPlants();
+    axios.get(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/userName/${username}`)
+            .then(res => {
+                setPlants(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+  }, [])
 
     return(
         <div className='profile'>
@@ -66,4 +35,21 @@ const ProfileDashboard = () =>{
     )
 }
 
-export default ProfileDashboard
+const mapStateToProps = state => {
+  return {
+    username: state.saveUsername.username
+  }
+}
+
+export default connect(mapStateToProps, { saveUsername })(ProfileDashboard);
+
+
+// const mapStateToProps = state => {
+//   return {
+//     plantsIsLoading: state.fetchPlants.isLoading,
+//     plantsError: state.fetchPlants.error,
+//     plants: state.fetchPlants.plants
+//   }
+// }
+
+// export default connect(mapStateToProps, { fetchPlants })(ProfileDashboard);
