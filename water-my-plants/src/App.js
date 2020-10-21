@@ -37,7 +37,7 @@ function App() {
           <Route path='/contact-confirmation' render={() => <ContactUsEmailSent />}/>
           <Route path='/plants/plant/:id' render={() => <Plant/>}/>
         </Switch>
-        {/* <Footer/> crashes when I try to load */} 
+        <Footer/> 
       </Router>
      
      
