@@ -9,13 +9,14 @@ const FooterBar = styled.div`
     background-color: mistyrose;
     height: 6vh;
     padding-left: 2%;
-    padding-right: 2%;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    
+    position:absolute;
+    bottom: 1;
+    width:100%;
 
     a{
         text-decoration: none;
+        padding-right:5%;
     }
 `
 

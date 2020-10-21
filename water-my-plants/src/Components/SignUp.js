@@ -10,7 +10,7 @@ const SignUpPage = styled.div`
     display: flex;
     flex-direction: column;
     justify-content:center;
-    height: 50vh;
+    height: 94vh;
 `
 
 const FormWrapper = styled.form`

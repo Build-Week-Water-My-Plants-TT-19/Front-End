@@ -13,6 +13,7 @@ const NavBar = styled.div`
   border-bottom: 1px solid coral;
   position: fixed;
   Width: 100%;
+  padding:0%;
 
   
   a{

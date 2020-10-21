@@ -12,7 +12,7 @@ const FormWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 94vh;
 
 `
 

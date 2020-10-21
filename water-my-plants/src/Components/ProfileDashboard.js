@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 
+
 const ProfileDashboard = (props) =>{
   // const { fetchPlants, plants } = props
   const [plants, setPlants] = useState([])
@@ -24,6 +25,7 @@ const ProfileDashboard = (props) =>{
   }, [])
 
     return(
+
         <div className='profile'>
             <h1>My PLANTS</h1>
             {
@@ -32,6 +34,7 @@ const ProfileDashboard = (props) =>{
               ))
             }
         </div>
+
     )
 }
 
