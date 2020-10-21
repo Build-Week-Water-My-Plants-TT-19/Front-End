@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import styled  from 'styled-components'
-import {Link} from 'react-router-dom'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { saveUsername } from '../Store/Actions/saveUsernameAction'
@@ -15,7 +14,7 @@ const SignInPage = styled.div`
     display: flex;
     flex-direction: column;
     justify-content:center;
-    height: 50vh;
+    height: 94vh;  
 `
 
 const FormWrapper = styled.form`
@@ -25,10 +24,12 @@ const FormWrapper = styled.form`
     align-self: center;
     background-color:#ECF1EB;
     width: 50%;
-    height: 27vh;
+    height: 32vh;
     padding-left: 2%;
     padding-right: 2%;
     box-shadow: 5px 5px 5px 5px darkgray;
+    border-radius: 12px;
+    border: 1px solid black;
 
     h1{
         text-align:center;
@@ -37,6 +38,7 @@ const FormWrapper = styled.form`
     input{
         margin-top: 1%;
         margin-bottom: 1%;
+        padding: 1%;
     }
     .signInButton {
         width:25%;
@@ -58,10 +60,8 @@ const FormWrapper = styled.form`
     }
 `
 const QuoteSection = styled.div`
-    
     text-align: center;
-    margin-bottom: 2%;
-    
+    margin-bottom: 2%;  
 `
 
 // ----------------- initial state values --------------

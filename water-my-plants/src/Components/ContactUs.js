@@ -11,18 +11,22 @@ import {useHistory} from 'react-router-dom'
 const ContactUsPage=styled.div`
     display:flex;
     justify-content: center;
-    height: 50vh;
+    height: 94vh;
 `
 const ContactUsForm = styled.form`
-    display:flex;
     align-self:center;
+    display:flex;
     flex-direction:column;
+    justify-content: center;
     background-color: #ECF1EB;
-    width: 50%;
-    box-shadow: 5px 5px 5px 5px darkgray;
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 2%;
+    border-radius: 12px;
+    box-shadow: 5px 5px 5px 5px darkgray;
+    height: 32vh;
+    width: 50%;
+    border: 1px solid black;
 
     h1{
         text-align: center;
@@ -31,6 +35,7 @@ const ContactUsForm = styled.form`
     input{
         margin-bottom: 1%;
         margin-top: 1%;
+        padding: 1%;
     }
     .sendButton{
         width: 25%;

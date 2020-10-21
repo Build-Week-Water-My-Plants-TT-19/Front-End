@@ -12,7 +12,7 @@ const FormWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 94vh;
 
 `
 
@@ -26,6 +26,7 @@ const PlantForm = styled.form`
     padding-left: 5%;
     padding-right: 5%;
     box-shadow: 5px 5px 5px 5px darkgray;
+    border-radius: 12px;
 
     h2{
         text-align: center;

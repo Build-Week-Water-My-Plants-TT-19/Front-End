@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import styled from 'styled-components'
 
+// ------------------------- Basic Styles ------------------------------
 const FooterBar = styled.div`
     display: flex;
     justify-content:space-between;
@@ -9,10 +10,13 @@ const FooterBar = styled.div`
     background-color: mistyrose;
     height: 6vh;
     padding-left: 2%;
-    padding-right: 2%;
+    width:100%;
+    overflow-x:hidden;
+    border-top: 1px solid black;
 
     a{
         text-decoration: none;
+        padding-right:5%;
     }
 `
 

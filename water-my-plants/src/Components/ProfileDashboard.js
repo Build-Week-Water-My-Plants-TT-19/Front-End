@@ -6,6 +6,35 @@ import {saveUsername} from '../Store/Actions'
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import styled from 'styled-components'
+
+const DashboardPage = styled.div`
+  height: 94vh;
+
+  .plantCard-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-top:10%;
+    padding-bottom:10%;
+  }
+
+  .plantCard-container h1{
+    color:white;
+  }
+
+  .plantCard-Wrapper{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    width: 75%;
+    
+    
+  }
+
+  
+`
 
 const ProfileDashboard = (props) =>{
   // const { fetchPlants, plants } = props
@@ -24,14 +53,21 @@ const ProfileDashboard = (props) =>{
   }, [])
 
     return(
-        <div className='profile'>
-            <h1>My PLANTS</h1>
-            {
-              plants.map(plant => (
-                  <PlantCard key={plant.id} plant={plant} />
-              ))
-            }
-        </div>
+        <DashboardPage> 
+          <div className='plantCard-container'>
+            
+            <h1> My Plants</h1>
+            
+            <div className='plantCard-Wrapper'>
+              {
+                plants.map(plant => (
+                    <PlantCard key={plant.id} plant={plant} />
+                ))
+              }
+            </div>
+
+          </div>
+        </DashboardPage>
     )
 }
 

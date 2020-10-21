@@ -7,7 +7,7 @@ const ConfirmationWrapper = styled.div`
     justify-content:center;
     align-items:center;
     width: 100%;
-    height: 40vh;
+    height: 94vh;
 `
 
 const ContactUsEmailContainer = styled.div`
@@ -19,6 +19,7 @@ const ContactUsEmailContainer = styled.div`
     width: 75%;
     border: 50px solid #ECF1EB;
     padding: 2%;
+    border-radius: 12px;
 
     p{
         font-size: 3rem;

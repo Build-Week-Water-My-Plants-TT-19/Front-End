@@ -10,7 +10,7 @@ const SignUpPage = styled.div`
     display: flex;
     flex-direction: column;
     justify-content:center;
-    height: 50vh;
+    height: 94vh;
 `
 
 const FormWrapper = styled.form`
@@ -20,14 +20,18 @@ const FormWrapper = styled.form`
     text-align: center;
     background-color:#ECF1EB;
     width: 50%;
-    height: 27vh;
+    height: 32vh;
     padding-left: 2%;
     padding-right: 2%;
     box-shadow: 5px 5px 5px 5px darkgray;
     margin-left:25%;
+    border-radius: 12px;
+    border: 1px solid black;
+    
     input{
         margin-top: 1%;
         margin-bottom: 1%;
+        padding: 1%;
     }
     button{
         width:25%;
