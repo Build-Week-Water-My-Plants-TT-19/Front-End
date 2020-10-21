@@ -9,14 +9,14 @@ const initialDisabled  = true;
 
 const initialSignUpValues = {
 username:'',
-email: '',
+phonenumber: '',
 password: '',
 }
 
 //inital erros
 const initalSignUpErrors = {
 username:'',
-email: '',
+phonenumber: '',
 password: '',
 }
 
@@ -31,7 +31,7 @@ const [disabled, setDisabled] = useState(initialDisabled)
     const history = useHistory()
 
     const routeToSignIn = () =>{
-        history.push('/SignIn')
+        history.push('/profile')
     }
 
 //event handlers
@@ -54,9 +54,10 @@ const handleInput = (event) => {
 const onSignUp = (event) =>{
     event.preventDefault()
 
-    axios.get(/*'https://reqres.in/api/register'*/)
+    axios.post('https://chrisjcorbin-watermyplants.herokuapp.com/createnewuser', signUpValues)
     .then(response =>{
-        alert('You have successfully regesterd')
+        window.localStorage.setItem('token', response.data.payload)
+        alert('You have successfully registered')
         routeToSignIn()
         console.log(response.data.data)
     })
@@ -94,13 +95,13 @@ return(
         />
         </label>
         <br></br>
-        <label> Email{' '}
+        <label> phonenumber{' '}
         <input
-        type='email'
-        name='email'
-        defaultValue={signUpValues.email}
+        type='text'
+        name='phonenumber'
+        defaultValue={signUpValues.phonenumber}
         onChange={handleInput}
-        placeholder='Please enter your email'
+        placeholder='Please enter your phone number'
         />
         </label>
         <br></br>
@@ -116,7 +117,7 @@ return(
         <div className='errors'>
             <div>{signUpErrors.name}</div>
             <div>{signUpErrors.password}</div>
-            <div>{signUpErrors.email}</div>
+            <div>{signUpErrors.phonenumber}</div>
         </div>
         <br></br>
         <button disabled={disabled}> Sign Up</button>

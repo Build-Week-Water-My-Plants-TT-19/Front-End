@@ -3,19 +3,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import {BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import reducer from './Store/Reducers'
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, composeEnhancers(
+  applyMiddleware(thunk, logger)
+  ))
 
 ReactDOM.render(
+  <Router>
   <React.StrictMode>
-    <Router>
+    <Provider store={store} >
       <App/>
-    </Router>
-  </React.StrictMode>,
+    </Provider>
+  </React.StrictMode>
+  </Router>,
   document.getElementById('root')
 );
-
-// import SignUp from './Components/SignUp'
-// import Plant from './Components/PlantForm'
-// import './App.css';
-// import PlantCard from './Components/PlantCard'
-// import PlantForm from './Components/PlantForm'

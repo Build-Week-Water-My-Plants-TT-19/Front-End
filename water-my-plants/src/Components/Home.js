@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import PlantPic from '../PictureFolder/plantpic.png'
-import Plant from './PlantForm';
-
+ 
 //Styling for Home Page
 
 document.body.style.backgroundImage = `url(${PlantPic})`
@@ -47,7 +46,8 @@ const StyledHome = styled.div`
 
 `
 
-const Home = (props) => {
+const Home = () => {
+
     return (
         <StyledHome>
         <div className='home'>
@@ -61,4 +61,4 @@ const Home = (props) => {
     )
 };
 
-export default Home;
+export default Home
