@@ -22,7 +22,7 @@ const StyledHome = styled.div`
     border:solid black;
     background-color:slateblue;
     padding:1%;
-    border: dotted 10px orange;
+    border: solid 3px orange;
     text-align:center;
     }
 
@@ -30,7 +30,8 @@ const StyledHome = styled.div`
     margin-bottom:1%;
     width:500px;
     height:300px;
-    border: dotted 10px orange;
+    border: solid 3px orange;
+    border-radius:50px;
     }
 
     h1{
@@ -78,13 +79,10 @@ const Home = () => {
             <h1>Water My Plants</h1>
             <img src='https://images.unsplash.com/photo-1536069221282-d877868cad6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'/>
             <p>Create a plant and it will remind you when it's time to feed that foliage and quench your plants' thirst!</p>
-
                 <h4>Organize</h4>
                 <p>Keep track of all your plants in one place, access them right from the dashboard.</p>
-
                 <h4>Forget</h4>
                 <p>We keep track of your watering histroy and remind you when to water so you don't have to remember when you last watered or when to water next</p>
-
                 <h4>Record</h4>
                 <p>Quickly record watering so you can get back to your other tasks.</p>        
 

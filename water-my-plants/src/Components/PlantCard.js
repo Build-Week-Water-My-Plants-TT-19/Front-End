@@ -9,6 +9,10 @@ const PlantCardWrapper = styled.div`
         align-items: center;
         border: 1px solid black;
         width: 50%;
+<<<<<<< HEAD
+=======
+        
+>>>>>>> a22e8720400c5425b6d560801e9c197dd10d7481
     }
 `
 

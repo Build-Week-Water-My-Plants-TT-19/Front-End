@@ -64,7 +64,9 @@ const EmailSent = styled.div`
 //--------------- initial state values --------------
 const initialEmailFormvalue = {email: ''}
 
-const ForgotPassword = () => {
+const ForgotPassword = (props) => {
+
+    const {hideForgotPsw} = props
     
     // ---------- slices of state --------------------
     const [visible, setVisible] = useState('show') 
@@ -98,7 +100,7 @@ const ForgotPassword = () => {
                 </ForgotPswInput> 
 
                 <EmailSent className={visible2}>
-                    <CloseIcon onClick={()=> {setVisible2('hide')}}className='closeButton'/>
+                    <CloseIcon onClick={()=> {hideForgotPsw(false)}}className='closeButton'/>
                     <p>Thank you! Please check your email.</p>
                     <Link>resend email </Link>
                  </EmailSent>
