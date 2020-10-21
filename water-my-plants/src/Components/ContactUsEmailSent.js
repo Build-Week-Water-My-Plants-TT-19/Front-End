@@ -7,7 +7,7 @@ const ConfirmationWrapper = styled.div`
     justify-content:center;
     align-items:center;
     width: 100%;
-    height: 40vh;
+    height: 94vh;
 `
 
 const ContactUsEmailContainer = styled.div`

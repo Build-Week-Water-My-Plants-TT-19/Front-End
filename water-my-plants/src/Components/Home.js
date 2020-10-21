@@ -11,10 +11,10 @@ document.body.style.backgroundSize = 'cover'
 document.body.style.backgroundAttachment = 'fixed'
 
 const StyledHome = styled.div`
-    .home{
     display:flex;
     flex-direction:column;
     align-items:center;
+    min-height: 100%;
 
     p{
     font-size:1.5rem;
@@ -66,15 +66,13 @@ const StyledHome = styled.div`
      }
     }
 
-}
-
 `
 
 const Home = () => {
 
     return (
         <StyledHome>
-        <div className='home'>
+        
             
             <h1>Water My Plants</h1>
             <img src='https://images.unsplash.com/photo-1536069221282-d877868cad6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'/>
@@ -90,7 +88,7 @@ const Home = () => {
                 <button>Create a new Plant!</button>
             </Link>
             
-        </div>
+        
         </StyledHome>
     )
 };

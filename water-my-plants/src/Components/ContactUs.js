@@ -11,7 +11,7 @@ import {useHistory} from 'react-router-dom'
 const ContactUsPage=styled.div`
     display:flex;
     justify-content: center;
-    height: 50vh;
+    height: 94vh;
 `
 const ContactUsForm = styled.form`
     display:flex;
