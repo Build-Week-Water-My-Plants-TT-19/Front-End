@@ -14,16 +14,16 @@ const StyledHome = styled.div`
     .home{
     display:flex;
     flex-direction:column;
-    margin-left:40%;
+    align-items:center;
 
     p{
     font-size:1.5rem;
-    width:30%;
+    width:25%;
     border:solid black;
     background-color:slateblue;
     padding:1%;
-    margin-left:5%;
     border: dotted 10px orange;
+    text-align:center;
     }
 
     img{
@@ -37,14 +37,12 @@ const StyledHome = styled.div`
     font-size:3rem;
     color:Orange;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    margin-left:5%;
     }
 
     h4{
     font-size:2rem;
     color:Orange;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    margin-left:15%;
     }
 
 
@@ -53,7 +51,6 @@ const StyledHome = styled.div`
     margin-left:15%;
     font-weight:bold;
     border-radius:10px;
-    width:15%;
     transition: all 1.1s ease-in-out;
     font-size:1.2rem;
 
@@ -77,28 +74,24 @@ const Home = () => {
     return (
         <StyledHome>
         <div className='home'>
+            
             <h1>Water My Plants</h1>
             <img src='https://images.unsplash.com/photo-1536069221282-d877868cad6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'/>
             <p>Create a plant and it will remind you when it's time to feed that foliage and quench your plants' thirst!</p>
-            <div className="offer">
-            <div>
+
                 <h4>Organize</h4>
                 <p>Keep track of all your plants in one place, access them right from the dashboard.</p>
-            </div>
 
-            <div>
                 <h4>Forget</h4>
-                <p>We keetp track of your watering histroy and remind you when to water so you don't have to remember when you last watered or when to water next</p>
-            </div>
+                <p>We keep track of your watering histroy and remind you when to water so you don't have to remember when you last watered or when to water next</p>
 
-            <div>
                 <h4>Record</h4>
-                <p>Quickly record watering so you can get back to your other tasks.</p>
-            </div>
-            </div>
+                <p>Quickly record watering so you can get back to your other tasks.</p>        
+
             <Link to='/new-plant'>
                 <button>Create a new Plant!</button>
             </Link>
+            
         </div>
         </StyledHome>
     )
