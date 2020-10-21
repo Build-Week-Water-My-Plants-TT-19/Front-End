@@ -16,8 +16,11 @@ const PlantCardWrapper = styled.div`
         align-items: center;
         border: 1px solid black;
         height: 20vh;
-        background: coral;
+        background: mistyrose;
         box-shadow: 5px 5px 5px 5px darkgray;
+        border-radius: 12px;
+        border: 1px solid black;
+        margin-top: 1%;
         
     }
 `
