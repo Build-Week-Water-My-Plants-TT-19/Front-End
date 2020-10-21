@@ -45,6 +45,10 @@ const StyledHome = styled.div`
         text-align: center;
     }
 
+    .info-section h2{
+        align-self:start;
+    }
+
     .newPlant-button{
         display:flex;
         justify-content:center;
@@ -104,7 +108,7 @@ const Home = () => {
                 </div>
                 
                 <div className='info-section'>
-
+                    <h2>What we offer...</h2>
                     <div className='info-card'>
                         <h4>Organize</h4>   
                         <p>Keep track of all your plants in one place, access them right from the dashboard.</p>
