@@ -2,13 +2,23 @@ import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import styled  from 'styled-components'
 
+
+
 const PlantCardWrapper = styled.div`
+    /* display: flex;
+    justify-content: center; */
+    width: 75%;
+    
     .plant-card {
         display: flex;
         flex-direction: column;
+        justify-content:center;
         align-items: center;
         border: 1px solid black;
-        width: 50%;
+        height: 20vh;
+        background: coral;
+        box-shadow: 5px 5px 5px 5px darkgray;
+        
     }
 `
 
@@ -30,14 +40,15 @@ const PlantCard = (props) =>{
 
 
     return(
+        
         <PlantCardWrapper>
-            <Link to={`/plants/plant/${plant.plantid}`}>
-                <div className='plant-card'>
-                <p>Name: {plant.name}</p>
-                <p>Location: {plant.location}</p>
-                <p>H2O Frequency: {plant.h2oFrequency}</p>
-                </div>
-            </Link>
+            <div className='plant-card'>
+                <Link to={`/plants/plant/${plant.plantid}`}>
+                    <p>Name: {plant.name}</p>
+                    <p>Location: {plant.location}</p>
+                    <p>H2O Frequency: {plant.h2oFrequency}</p>
+                </Link>
+            </div>
         </PlantCardWrapper>
         
         
