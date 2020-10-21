@@ -11,6 +11,8 @@ const NavBar = styled.div`
   background-color: mistyrose;
   height: 6vh;
   border-bottom: 1px solid coral;
+  position: fixed;
+  Width: 100%;
 
   
   a{

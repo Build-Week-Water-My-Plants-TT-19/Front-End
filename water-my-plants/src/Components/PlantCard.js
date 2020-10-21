@@ -9,7 +9,6 @@ const PlantCardWrapper = styled.div`
         align-items: center;
         border: 1px solid black;
         width: 50%;
-        
     }
 `
 
