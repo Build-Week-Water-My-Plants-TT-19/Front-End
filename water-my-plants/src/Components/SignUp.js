@@ -9,6 +9,7 @@ import styled from 'styled-components'
 const SignUpPage = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content:center;
     height: 94vh;
 `
@@ -17,16 +18,20 @@ const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
     text-align: center;
     background-color:#ECF1EB;
     width: 50%;
     height: 32vh;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding: 4%;
     box-shadow: 5px 5px 5px 5px darkgray;
-    margin-left:25%;
+    /* margin-left:25%; */
     border-radius: 12px;
     border: 1px solid black;
+
+    @media (max-width: 480px){
+        width: 70%;
+    }
     
     input{
         margin-top: 1%;

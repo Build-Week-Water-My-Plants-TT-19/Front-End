@@ -29,6 +29,9 @@ const PlantForm = styled.form`
     box-shadow: 5px 5px 5px 5px darkgray;
     border-radius: 12px;
 
+    @media (max-width: 480px){
+        width: 70%;
+    }
     h2{
         text-align: center;
     }

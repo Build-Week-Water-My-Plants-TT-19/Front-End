@@ -28,6 +28,10 @@ const ContactUsForm = styled.form`
     width: 50%;
     border: 1px solid black;
 
+    @media(max-width: 480px){
+        padding: 4%;
+        width: 70%;
+    }
     h1{
         text-align: center;
     }
