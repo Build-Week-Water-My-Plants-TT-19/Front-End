@@ -19,6 +19,7 @@ const ContactUsEmailContainer = styled.div`
     width: 75%;
     border: 50px solid #ECF1EB;
     padding: 2%;
+    border-radius: 12px;
 
     p{
         font-size: 3rem;
