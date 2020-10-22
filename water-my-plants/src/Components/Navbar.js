@@ -51,6 +51,10 @@ const NavBar = styled.div`
 
 `
 
+const logout = () => {
+  window.localStorage.clear();
+}
+
 function Navbar() {
   return (
     <NavBar>
@@ -66,6 +70,7 @@ function Navbar() {
         <Link to='/sign-up' >Sign Up</Link>
         <Link to='/new-plant' >Create Plant</Link>
         <Link to='/contact-us'>Contact</Link>
+        <p onClick={logout}>Logout</p>
       </div>
       
     </NavBar>
