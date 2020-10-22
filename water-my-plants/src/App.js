@@ -30,6 +30,7 @@ function App() {
           <Route path='/login' render={() => <SignIn />} />
           <PrivateRoute path='/profile' component={ProfileDashboard} />
           <PrivateRoute path='/new-plant' component={PlantForm} />
+          <PrivateRoute path='/update-plant/:id' component={PlantForm} />
           <Route path='/contact-us' render={() => <ContactUs />} />
           <Route path='/contact-confirmation' render={() => <ContactUsEmailSent />}/>
           <Route path='/plants/plant/:id' render={() => <Plant/>}/>
