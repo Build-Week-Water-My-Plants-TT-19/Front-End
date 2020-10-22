@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import React,{useState, useEffect} from 'react'
+import {useHistory, useParams} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
-
-
+import {saveUsername} from '../Store/Actions'
+import { connect } from 'react-redux';
+import { axiosWithAuth } from './Utils/axiosWithAuth'
 
 // --------------- basic styling -----------------------------
 
@@ -48,24 +49,30 @@ const PlantForm = styled.form`
     }
 `
 
-
-
-
-
-
-
 // --------------- Initial Values -------------------------------
 const initialPlantValues = {
-    id: `{Math.floor(Math.random() * 2000)}`,
-    nickname: '',
+    // plantid: Math.floor(Math.random() * 20000),
+    name: '',
     species:'',
-    last_water: '',
-    schedule: [],
-
+    schedule: '',
+    // username: '',
+    location: 'living room',
 }
 
-const Plant = () =>{
+const PlantFormComponent = (props) =>{
     const [plantValues, setPlantValues] = useState(initialPlantValues)
+    const { username } = props
+    const { id } = useParams()
+
+    useEffect(() => {
+        if(id) {
+          axios.get(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`)
+          .then(res => {
+            setPlantValues(res.data)
+          })
+          .catch(err => console.log(err));
+        }
+      }, [id])
 
     const updateForm = (inputName, inputValue) =>{
         setPlantValues({...plantValues, [inputName]: inputValue})
@@ -76,7 +83,7 @@ const Plant = () =>{
     const history = useHistory()
 
     const routeToPlantCards = () =>{
-        history.push('/PlantCard')
+        history.push('/profile')
     }
 
    // ----------------- event handlers -------------------------------
@@ -85,18 +92,31 @@ const Plant = () =>{
        updateForm(name, value)
    }
 
+   console.log(plantValues)
+
    const handlePlantAction = (event)=>{
-       event.preventDefault()
-       //axios code will go here
-       axios
-       .post('https://reqres.in/api/register')
-       .then(response =>{
-           routeToPlantCards()
-           console.log(response)
-       })
-       .catch(error =>{
-           console.log('THIS IS YOUR ERROR----->', error)
-       })
+        event.preventDefault()
+    //    setPlantValues({...plantValues, username: username})
+        if(id) {
+            axios
+                .put(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`, plantValues)
+                .then(res => {
+                history.push(`/plants/plant/${id}`);
+                })
+                .catch(err => console.log(err))
+        } else {
+            axiosWithAuth()
+                .post('plants/plant', plantValues)
+                .then(response =>{
+                    routeToPlantCards()
+                    console.log(response)
+                })
+                .catch(error =>{
+                    console.log('THIS IS YOUR ERROR----->', error)
+                })
+        }
+
+       
    }
 
    // ---------------------- Form Layout ----------------------------------
@@ -106,35 +126,25 @@ const Plant = () =>{
                 <h2>Add your favorite plant</h2>
                 <label>Plant Name {' '}</label>
                 <input
-                name='input'
+                name='name'
                 type='text'
                 placeholder='Please enter a Plant name'
-                defaultValue={plantValues.nickname}
+                defaultValue={plantValues.name}
                 onChange={handlePlantInput}
                 />
 
                 <label>Plant Species {' '}</label>
                 <input
-                name='input'
+                name='species'
                 type='text'
                 placeholder='Plant Species'
                 defaultValue={plantValues.species}
                 onChange={handlePlantInput}
                 />
 
-                <label>Last Water {' '}</label>
-                <input
-                name='input'
-                type='text'
-                placeholder='When was the plant watered last?'
-                defaultValue={plantValues.last_water}
-                onChange={handlePlantInput}
-                />
-
                 <label>Plant Schedule {' '}</label>
                 <input
-                name='input'
-                type='text'
+                name='schedule'
                 placeholder='Plant Schedule'
                 defaultValue={plantValues.schedule}
                 onChange={handlePlantInput}
@@ -145,4 +155,10 @@ const Plant = () =>{
     )
 }
 
-export default Plant
+const mapStateToProps = state => {
+    return {
+      username: state.saveUsername.username
+    }
+  }
+  
+  export default connect(mapStateToProps, { saveUsername })(PlantFormComponent);
