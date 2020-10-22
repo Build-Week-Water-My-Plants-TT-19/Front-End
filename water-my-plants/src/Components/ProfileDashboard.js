@@ -57,6 +57,7 @@ const ProfileDashboard = (props) =>{
           <div className='plantCard-container'>
             
             <h1> My Plants</h1>
+            <h2>Welcome back, {username}</h2>
             
             <div className='plantCard-Wrapper'>
               {

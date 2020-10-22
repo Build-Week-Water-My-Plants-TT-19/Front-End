@@ -13,7 +13,7 @@ import ProfileDashboard from './Components/ProfileDashboard'
 import PlantForm from './Components/PlantForm'
 import ContactUsEmailSent from './Components/ContactUsEmailSent';
 import Plant from './Components/Plant'
-import PrivateRoute from './Components/Private/PrivateRoute'
+import PrivateRoute from './Components/private/PrivateRoute'
 
 //App Styles
 
