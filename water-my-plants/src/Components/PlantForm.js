@@ -4,7 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import {saveUsername} from '../Store/Actions'
 import { connect } from 'react-redux';
-import { axiosWithAuth } from './Utils/axiosWithAuth'
+import { axiosWithAuth } from './utils/axiosWithAuth'
 
 // --------------- basic styling -----------------------------
 

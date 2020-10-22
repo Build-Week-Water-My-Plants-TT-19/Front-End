@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 
 //NavBar Styles
@@ -13,7 +13,7 @@ const NavBar = styled.div`
   height: 6vh;
   border-bottom: 1px solid coral;
   position: fixed;
-  Width: 100%;
+  width: 100%;
 
   
   a{
@@ -51,11 +51,14 @@ const NavBar = styled.div`
 
 `
 
-const logout = () => {
-  window.localStorage.clear();
-}
-
 function Navbar() {
+  const history = useHistory()
+
+  const logout = () => {
+    window.localStorage.clear();
+    history.push('/login');
+  }
+
   return (
     <NavBar>
       
