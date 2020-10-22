@@ -25,11 +25,14 @@ const FormWrapper = styled.form`
     background-color:#ECF1EB;
     width: 50%;
     height: 32vh;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding: 4%;
     box-shadow: 5px 5px 5px 5px darkgray;
     border-radius: 12px;
     border: 1px solid black;
+
+    @media (max-width: 480px){
+        width: 75%;
+    }
 
     h1{
         text-align:center;

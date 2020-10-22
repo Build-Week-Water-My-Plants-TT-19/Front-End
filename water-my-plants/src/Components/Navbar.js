@@ -15,6 +15,34 @@ const NavBar = styled.div`
   position: fixed;
   width: 100%;
 
+  @media (max-width: 768px){
+    .nav-links{
+      width: 60%;
+      padding-right: 2%;
+    }
+
+    @media (max-width: 480px) {
+      height: 15vh;
+
+      .nav-links{
+       display:flex;
+       flex-direction: column; 
+       width: 25%;
+       align-items: flex-start
+      }
+
+      a{
+        padding: 2px;
+        margin-bottom: 1%;
+        
+      }
+    }
+
+    @media (max-width: 414px){
+      height: 20vh;
+    }
+  }
+
   
   a{
     text-decoration:none;
@@ -73,7 +101,7 @@ function Navbar() {
         <Link to='/sign-up' >Sign Up</Link>
         <Link to='/new-plant' >Create Plant</Link>
         <Link to='/contact-us'>Contact</Link>
-        <Link to='/login'><p onClick={logout}>Logout</p></Link>
+        <Link onClick={logout} to='/login'>Logout </Link>
       </div>
       
     </NavBar>

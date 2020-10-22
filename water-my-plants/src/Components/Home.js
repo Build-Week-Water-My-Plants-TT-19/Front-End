@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-// import PlantPic from '../PictureFolder/plantpic4.png'
 import PlantPic from '../PictureFolder/plantpic4.png'
+// import PlantPic from '../PictureFolder/plantpic.png'
 
  
 //---------------- Styling for Home Page -------------------------
@@ -19,16 +19,28 @@ const StyledHome = styled.div`
     flex-direction:column;
     align-items:center;
     min-height: 100vh;
-
+    
+    
+    
     .innerContainer{
         display: flex;
         flex-direction: column;
         align-self: center;
-        width: 50%;
+        width: 40%;
         margin-top: 12%;
         margin-bottom: 7%;
         border-radius: 20px;
         border: 2px solid black;
+
+        @media (max-width: 768px){
+            width:75%;
+        }
+
+        @media (max-width: 480px){
+            width: 95%;
+            margin-top: 40%;
+
+        }
     }
 
     .top-section{
@@ -63,6 +75,10 @@ const StyledHome = styled.div`
         padding: 5%;
         background: lightblue;
         font-size: 1rem;
+    }
+
+    .newPlant-button button:hover{
+        cursor: pointer;
     }
 
     .info-section{
