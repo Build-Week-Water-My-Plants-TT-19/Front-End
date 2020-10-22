@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 // import PlantPic from '../PictureFolder/plantpic4.png'
-import PlantPic from '../PictureFolder/plantpic.png'
+import PlantPic from '../PictureFolder/plantpic4.png'
 
  
 //---------------- Styling for Home Page -------------------------

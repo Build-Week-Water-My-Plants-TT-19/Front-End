@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
 // import { fetchPlants } from '../Store/Actions'
 // import { connect } from 'react-redux';
 
 const PlantCard = (props) =>{
     //setting card state
     const[plant, setPlant] = useState([]);
+    const history = useHistory()
     const { id } = useParams()
     //wrap axios in useEffect
 
@@ -21,12 +22,29 @@ const PlantCard = (props) =>{
         })
     },[id])
 
+    const deletePlant = () => {
+        axios
+        .delete(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`)
+        .then(res => {
+          history.push('/profile');
+        })
+        .catch(err => console.log(err));
+      }
+
 
     return(
         <div>
             <h2>Name: {plant.name}</h2>
             <p>Location: {plant.location}</p>
             <p>H2O Frequency: {plant.h2oFrequency}</p>
+
+            <div className="edit-button" onClick={() => history.push(`/update-plant/${id}`)}>
+                Edit
+            </div>
+
+            <div className="delete-button" onClick={deletePlant}>
+                Delete
+            </div>
         </div>
         
     )

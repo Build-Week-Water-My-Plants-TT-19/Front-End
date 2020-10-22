@@ -57,9 +57,11 @@ const ProfileDashboard = (props) =>{
         <DashboardPage> 
           <div className='plantCard-container'>
             
-            <h1> My Plants</h1>
+            
+            <h2>Welcome back, {username}</h2>
             
             <div className='plantCard-Wrapper'>
+            <h1> My Plants</h1>
               {
                 plants.map(plant => (
                     <PlantCard key={plant.id} plant={plant} />
@@ -79,14 +81,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { saveUsername })(ProfileDashboard);
-
-
-// const mapStateToProps = state => {
-//   return {
-//     plantsIsLoading: state.fetchPlants.isLoading,
-//     plantsError: state.fetchPlants.error,
-//     plants: state.fetchPlants.plants
-//   }
-// }
-
-// export default connect(mapStateToProps, { fetchPlants })(ProfileDashboard);

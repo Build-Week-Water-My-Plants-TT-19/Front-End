@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import styled from 'styled-components'
+import { Link, useHistory } from 'react-router-dom'
 
 
 //NavBar Styles
@@ -12,8 +13,7 @@ const NavBar = styled.div`
   height: 6vh;
   border-bottom: 1px solid coral;
   position: fixed;
-  Width: 100%;
-  padding:0%;
+  width: 100%;
 
   
   a{
@@ -52,20 +52,28 @@ const NavBar = styled.div`
 `
 
 function Navbar() {
+  const history = useHistory()
+
+  const logout = () => {
+    window.localStorage.clear();
+    history.push('/login');
+  }
+
   return (
     <NavBar>
       
       <div className='logo-title'>
         <img src='https://notion-emojis.s3-us-west-2.amazonaws.com/v0/svg-twitter/1f340.svg' alt='plant logo' />
-        <a href='/'>WaterMyPlants</a>
+        <Link to='/'>WaterMyPlants</Link>
       </div>
 
       <div className='nav-links'>
-        <a href='/profile' >My Plants</a>
-        <a href='/login' >Login</a>
-        <a href='/sign-up' >Sign Up</a>
-        <a href='/new-plant' >Create Plant</a>
-        <a href='/contact-us'>Contact</a>
+        <Link to='/profile' >My Plants</Link>
+        <Link to='/login' >Login</Link>
+        <Link to='/sign-up' >Sign Up</Link>
+        <Link to='/new-plant' >Create Plant</Link>
+        <Link to='/contact-us'>Contact</Link>
+        <Link to='/login'><p onClick={logout}>Logout</p></Link>
       </div>
       
     </NavBar>
