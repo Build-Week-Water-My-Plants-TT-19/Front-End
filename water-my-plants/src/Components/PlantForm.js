@@ -51,28 +51,35 @@ const PlantForm = styled.form`
 
 // --------------- Initial Values -------------------------------
 const initialPlantValues = {
-    // plantid: Math.floor(Math.random() * 20000),
-    name: '',
-    species:'',
-    schedule: '',
-    // username: '',
-    location: 'living room',
+    "species": '',
+    "name": '',
+    "location": 'bedroom',
+    "schedule": 0,
+    "user": {
+        "userid": 0,
+    }
+
+
 }
 
 const PlantFormComponent = (props) =>{
     const [plantValues, setPlantValues] = useState(initialPlantValues)
+    const [userid, setUserid] = useState(0)
     const { username } = props
     const { id } = useParams()
 
     useEffect(() => {
-        if(id) {
-          axios.get(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`)
-          .then(res => {
-            setPlantValues(res.data)
-          })
-          .catch(err => console.log(err));
-        }
-      }, [id])
+        axios
+            .get(`https://chrisjcorbin-watermyplants.herokuapp.com/getuser/${username}`)
+            .then(res => {
+            setUserid(res.data.userid)
+            console.log(res.data.userid)
+            })
+            
+            .catch(err => {
+            console.log(err)
+            })
+      }, [])
 
     const updateForm = (inputName, inputValue) =>{
         setPlantValues({...plantValues, [inputName]: inputValue})
@@ -90,23 +97,25 @@ const PlantFormComponent = (props) =>{
    const handlePlantInput = (event) => {
        const {name, value} = event.target
        updateForm(name, value)
+       plantValues.user.userid = userid
    }
 
    console.log(plantValues)
 
-   const handlePlantAction = (event)=>{
+   const handlePlantAction = (event, plantValuesObj)=>{
         event.preventDefault()
-    //    setPlantValues({...plantValues, username: username})
+        plantValuesObj = plantValues
+       console.log(plantValues)
         if(id) {
             axios
-                .put(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`, plantValues)
+                .put(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`, plantValuesObj)
                 .then(res => {
                 history.push(`/plants/plant/${id}`);
                 })
                 .catch(err => console.log(err))
         } else {
             axiosWithAuth()
-                .post('plants/plant', plantValues)
+                .post('/plants/plant', plantValues)
                 .then(response =>{
                     routeToPlantCards()
                     console.log(response)
@@ -157,7 +166,7 @@ const PlantFormComponent = (props) =>{
 
 const mapStateToProps = state => {
     return {
-      username: state.saveUsername.username
+      username: state.saveUsername.username,
     }
   }
   
