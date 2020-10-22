@@ -17,10 +17,21 @@ const DashboardPage = styled.div`
     align-items:center;
     padding-top:10%;
     padding-bottom:10%;
+
+    
+
   }
 
   .plantCard-container h1{
+    font-size: 3.5rem;
     color:white;
+    text-decoration: underline;
+    text-shadow: 2px 2px 5px black;
+
+    @media (max-width: 480px){
+      font-size: 2rem;
+    }
+
   }
 
   .plantCard-Wrapper{
@@ -29,8 +40,15 @@ const DashboardPage = styled.div`
     justify-content: center;
     align-items:center;
     width: 75%;
-    
-    
+
+    @media (max-width: 480px){
+      margin-top: 18%;
+    }
+  }
+
+  h2{
+    padding-left: 2%;
+    color: white;
   }
 
   
@@ -53,13 +71,14 @@ const ProfileDashboard = (props) =>{
   }, [])
 
     return(
-        <DashboardPage> 
+        <DashboardPage>
+
           <div className='plantCard-container'>
-            
-            <h1> My Plants</h1>
+      
             <h2>Welcome back, {username}</h2>
             
             <div className='plantCard-Wrapper'>
+              <h1> My Plants</h1> 
               {
                 plants.map(plant => (
                     <PlantCard key={plant.id} plant={plant} />
