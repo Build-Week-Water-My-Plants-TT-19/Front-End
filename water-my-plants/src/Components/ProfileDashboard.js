@@ -9,7 +9,7 @@ import axios from 'axios';
 import styled from 'styled-components'
 
 const DashboardPage = styled.div`
-  height: 94vh;
+  height: 100vh;
 
   .plantCard-container{
     display:flex;
@@ -17,9 +17,6 @@ const DashboardPage = styled.div`
     align-items:center;
     padding-top:10%;
     padding-bottom:10%;
-
-    
-
   }
 
   .plantCard-container h1{
