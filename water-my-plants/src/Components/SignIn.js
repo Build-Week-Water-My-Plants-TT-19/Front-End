@@ -3,6 +3,7 @@ import styled  from 'styled-components'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import { saveUsername } from '../Store/Actions/saveUsernameAction'
+import { saveUserId } from '../Store/Actions/saveUserIdAction'
 import { connect } from 'react-redux';
 import * as yup from 'yup'
 
@@ -105,7 +106,7 @@ const SignIn = (props) =>{
     const [disabled, setDisabled] = useState(initialDisabled)  
     const history = useHistory();
     const [visible, setVisible] = useState(false)
-    const { saveUsername } = props
+    const { saveUsername, saveUserId } = props
 
     // -------------- helper functions ----------------------
     
@@ -152,6 +153,24 @@ const SignIn = (props) =>{
         console.log(newSignInForm)
         postNewSignInForm(newSignInForm)
     }
+
+
+    const saveUserIdFunction = () => {
+        return (
+            axios
+                .get(`https://chrisjcorbin-watermyplants.herokuapp.com/getuser/${signInForm.username}`)
+                .then(res => {
+                saveUserId(res.data.userid)
+                console.log(res.data.userid)
+                })
+               
+                .catch(err => {
+                console.log(err)
+            })
+        )
+        
+    }
+    
     
     const postNewSignInForm = newSignInForm => {
         axios.post('https://chrisjcorbin-watermyplants.herokuapp.com/login', `grant_type=password&username=${signInForm.username}&password=${signInForm.password}`, {
@@ -167,6 +186,7 @@ const SignIn = (props) =>{
                 setListOfSignIns(listOfSignIns.concat(result.data))
                 window.localStorage.setItem('token', result.data.access_token)
                 saveUsername(signInForm.username)
+                saveUserIdFunction()
                 history.push("/profile");
             })
             .catch(err => {
@@ -176,6 +196,9 @@ const SignIn = (props) =>{
                 setSignInForm(inititialSignInForm)
             })
     }
+
+    
+
 
     useEffect(() => {
         signInSchema.isValid(signInForm)
@@ -235,8 +258,9 @@ const SignIn = (props) =>{
 
 const mapStateToProps = state => {
     return {
+      userid: state.saveUserId.userid,
       username: state.saveUsername.username
     }
   }
   
-  export default connect(mapStateToProps, { saveUsername })(SignIn);
+  export default connect(mapStateToProps, { saveUserId, saveUsername })(SignIn);

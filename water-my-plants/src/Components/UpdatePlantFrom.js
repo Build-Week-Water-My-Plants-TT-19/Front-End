@@ -14,7 +14,6 @@ const FormWrapper = styled.div`
     justify-content: center;
     align-items: center;
     height: 94vh;
-
 `
 
 const PlantForm = styled.form`
@@ -28,20 +27,17 @@ const PlantForm = styled.form`
     padding-right: 5%;
     box-shadow: 5px 5px 5px 5px darkgray;
     border-radius: 12px;
-
     @media (max-width: 480px){
         width: 70%;
     }
     h2{
         text-align: center;
     }
-
     input{
         margin-top: 1.5%;
         margin-bottom: 1.5%;
         padding: 1%;
     }
-
     button{
         width: 25%;
         align-self: center;
@@ -50,32 +46,45 @@ const PlantForm = styled.form`
         border-radius: 12px;
         
     }
+
+    .form-title {
+        color: white;
+        font-size: 1.6rem;
+    }
 `
 
 // --------------- Initial Values -------------------------------
 const initialPlantValues = {
     "species": '',
     "name": '',
-    "location": 'bedroom',
-    "schedule": 0,
+    "location": '',
+    "schedule": '',
     "user": {
         "userid": 0,
     }
-
-
 }
 
 const PlantFormComponent = (props) =>{
     const [plantValues, setPlantValues] = useState(initialPlantValues)
-    const [userid, setUserid] = useState(0)
     const { username } = props
+    const [userid, setUserid] = useState(0)
     const { id } = useParams()
 
     useEffect(() => {
+        if(id) {
+          axios.get(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`)
+          .then(res => {
+            setPlantValues(res.data)
+          })
+          .catch(err => console.log(err));
+        }
+      }, [id])
+
+      useEffect(() => {
         axios
             .get(`https://chrisjcorbin-watermyplants.herokuapp.com/getuser/${username}`)
             .then(res => {
-            // setPlantValues(res.data)
+            setPlantValues(res.data)
             setUserid(res.data.userid)
             plantValues.user.userid = userid
             console.log(res.data.userid)
@@ -102,32 +111,20 @@ const PlantFormComponent = (props) =>{
    const handlePlantInput = (event) => {
        const {name, value} = event.target
        updateForm(name, value)
-       plantValues.user.userid = userid
    }
 
    console.log(plantValues)
 
-   const handlePlantAction = (event, plantValuesObj)=>{
+   const handlePlantAction = (event)=>{
         event.preventDefault()
-        plantValuesObj = plantValues
-       console.log(plantValues)
+    //    setPlantValues({...plantValues, username: username})
         if(id) {
             axios
-                .put(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`, plantValuesObj)
+                .put(`https://chrisjcorbin-watermyplants.herokuapp.com/plants/plant/${id}`, plantValues)
                 .then(res => {
                 history.push(`/plants/plant/${id}`);
                 })
                 .catch(err => console.log(err))
-        } else {
-            axiosWithAuth()
-                .post('/plants/plant', plantValues)
-                .then(response =>{
-                    routeToPlantCards()
-                    console.log(response)
-                })
-                .catch(error =>{
-                    console.log('THIS IS YOUR ERROR----->', error)
-                })
         }
 
        
@@ -137,7 +134,7 @@ const PlantFormComponent = (props) =>{
     return(
         <FormWrapper>
             <PlantForm onSubmit={handlePlantAction}>
-                <h2>Add your favorite plant</h2>
+                <h2 className='form-title'>Add your favorite plant</h2>
                 <label>Plant Name {' '}</label>
                 <input
                 name='name'
@@ -165,14 +162,14 @@ const PlantFormComponent = (props) =>{
                 onChange={handlePlantInput}
                 />
 
-                <label>Plant Schedule (in days) {' '}</label>
+                <label>Plant Schedule {' '}</label>
                 <input
                 name='schedule'
                 placeholder='Plant Schedule'
                 defaultValue={plantValues.schedule}
                 onChange={handlePlantInput}
                 />
-                <button onClick={handlePlantAction}>Add your favorite plants</button>
+                <button onClick={handlePlantAction}>Finish Editing</button>
             </PlantForm>
         </FormWrapper> 
     )
@@ -180,7 +177,7 @@ const PlantFormComponent = (props) =>{
 
 const mapStateToProps = state => {
     return {
-      username: state.saveUsername.username,
+      username: state.saveUsername.username
     }
   }
   

@@ -81,11 +81,13 @@ const PlantCard = (props) =>{
     return(
         <PlantPage>
             <div className='plantCard'>
+                
                 <h2>Name: {plant.name}</h2>
                 <p>Location: {plant.location}</p>
-                <p>H2O Frequency: {plant.h2oFrequency}</p>
+                <p>Species: {plant.species}</p>
+                <p>Water every: {plant.schedule} days </p>
 
-                <div className="edit-button" onClick={() => history.push(`/update-plant/${id}`)}>
+                <div className="edit-button" onClick={() => history.push(`/update-plant/${id}`)} >
                     Edit
                 </div>
 
