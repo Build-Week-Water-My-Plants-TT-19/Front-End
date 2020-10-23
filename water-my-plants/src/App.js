@@ -14,6 +14,7 @@ import PlantForm from './Components/PlantForm'
 import ContactUsEmailSent from './Components/ContactUsEmailSent';
 import Plant from './Components/Plant'
 import PrivateRoute from './Components/private/PrivateRoute'
+import UpdatePlantForm from './Components/UpdatePlantFrom'
 
 //App Styles
 
@@ -30,7 +31,7 @@ function App() {
           <Route path='/login' render={() => <SignIn />} />
           <PrivateRoute path='/profile' component={ProfileDashboard} />
           <PrivateRoute path='/new-plant' component={PlantForm} />
-          <PrivateRoute path='/update-plant/:id' component={PlantForm} />
+          <PrivateRoute path='/update-plant/:id' component={UpdatePlantForm} />
           <Route path='/contact-us' render={() => <ContactUs />} />
           <Route path='/contact-confirmation' render={() => <ContactUsEmailSent />}/>
           <Route path='/plants/plant/:id' render={() => <Plant/>}/>
