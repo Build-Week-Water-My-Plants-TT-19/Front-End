@@ -51,6 +51,7 @@ const DashboardPage = styled.div`
   
 `
 
+
 const ProfileDashboard = (props) =>{
   // const { fetchPlants, plants } = props
   const [plants, setPlants] = useState([])
