@@ -51,14 +51,14 @@ const initialDisabled  = true;
 
 const initialSignUpValues = {
 username:'',
-email: '',
+phonenumber: '',
 password: '',
 }
 
 //inital erros
 const initalSignUpErrors = {
 username:'',
-email: '',
+phonenumber: '',
 password: '',
 }
 
@@ -138,13 +138,13 @@ return(
         placeholder='Please enter your username'
         />
         <br></br>
-        <label> email</label>
+        <label> phonenumber</label>
         <input
         type='text'
-        name='email'
-        defaultValue={signUpValues.email}
+        name='phonenumber'
+        defaultValue={signUpValues.phonenumber}
         onChange={handleInput}
-        placeholder='Please enter your email'
+        placeholder='Please enter your phonenumber'
         />
         <br></br>
         <label> Password</label>
@@ -158,7 +158,7 @@ return(
         <div className='errors'>
             <div>{signUpErrors.name}</div>
             <div>{signUpErrors.password}</div>
-            <div>{signUpErrors.email}</div>
+            <div>{signUpErrors.phonenumber}</div>
         </div>
         <br></br>
         <button disabled={disabled}> Sign Up</button>

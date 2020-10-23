@@ -10,3 +10,8 @@ export {
     SAVE_USERNAME,
     saveUsername
 } from './saveUsernameAction';
+
+export {
+    SAVE_USERID,
+    saveUserId
+} from './saveUserIdAction'
